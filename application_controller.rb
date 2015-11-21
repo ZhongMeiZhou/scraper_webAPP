@@ -37,7 +37,7 @@ class ApplicationController < Sinatra::Base
 	post_tours = lambda do
     		request_url = "#{settings.api_server}/#{settings.api_ver}/tours"
     		country_tour = post_api_tour(params[:tour], request_url)		
-    		if country_tour['status']?
+    		if country_tour['status'] == true
 			session[:results] = country_tour['result']
     			session[:action] = :create
 			redirect "/tours/#{country_tour['id']}"

@@ -1,5 +1,5 @@
 source 'http://rubygems.org'
-ruby '2.2.1'
+ruby '2.2.0'
 
 gem 'sinatra'
 gem 'thin'
@@ -7,3 +7,6 @@ gem 'json'
 gem 'puma'
 gem 'sinatra-flash'
 gem 'httparty'
+gem 'slim'
+gem 'virtus'
+gem 'activemodel'
