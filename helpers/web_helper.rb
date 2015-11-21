@@ -7,15 +7,21 @@ module WebAppHelper
 	def post_api_tour (country, request_url)
 		submit = TourForm.new
     		submit.country = country
+
 		if submit.valid? == false
 			{ :status => false, :message => 'You broke it!' }
     		else
     			options = {
-      				body: country.to_json,
+      				body: submit.to_json,
       				headers: { 'Content_Type' => 'application/json'}
     			}
-    			results = HTTParty.post(request_url, options)
+    			begin
+        			results = HTTParty.post(request_url, options)
 
+      			rescue StandardError => e
+        			logger.info e.message
+        			halt 400, e.message
+      			end		
     			if (results.code != 200)
 				{ :status => false, :message => "The Pony Express did not deliver the goods." }
     			else 

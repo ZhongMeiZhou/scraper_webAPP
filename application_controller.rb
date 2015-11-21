@@ -10,15 +10,15 @@ class ApplicationController < Sinatra::Base
 	enable :sessions
 	register Sinatra::Flash
 
-	set :views, File.expand_path('../../views', __FILE__)
-	set :public_folder, File.expand_path('../../public', __FILE__)
+	set :views, File.expand_path('../views', __FILE__)
+	set :public_folder, File.expand_path('../public', __FILE__)
 
 	configure do
 		set :session_secret, 'zmz!'
     		set :api_ver, 'api/v1'
 	end
 	
-	configure :production do
+	configure :production, :development,:test do
     		set :api_server, 'http://zmztours.herokuapp.com'
   	end
 
@@ -38,12 +38,13 @@ class ApplicationController < Sinatra::Base
 	post_tours = lambda do
     		request_url = "#{settings.api_server}/#{settings.api_ver}/tours"
     		country_tour = post_api_tour(params[:tour], request_url)		
-    		if country_tour['status'] == true
-			session[:results] = country_tour['result']
+    		if country_tour[:status] == true
+			session[:results] = country_tour[:result]
     			session[:action] = :create
-			redirect "/tours/#{country_tour['id']}"
-		else			
-      			flash[:notice] = country_tour['message']
+			redirect "/tours/#{country_tour[:id]}"
+		else	
+		
+      			flash[:notice] = country_tour[:message]
       			redirect "/tours"
     		end
   	end
@@ -56,7 +57,7 @@ class ApplicationController < Sinatra::Base
       			get_api_tours (request_url)
       			if @results.code != 200
         			flash[:notice] = "Cannot find any tours for #{params[:country]}"
-        			redirect "/#{settings.api_ver}/tours"
+        			redirect "/tours"
       			end
     		end
     		@country = @results['country'].upcase
