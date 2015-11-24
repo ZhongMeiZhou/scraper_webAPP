@@ -30,12 +30,12 @@ class ApplicationController < Sinatra::Base
 	# GUI route definitions
  	get_root = lambda do
     @dashboard = 'active'
-    @tours = 'none'
-    slim :home
+    @listings = 'none'
+    slim :tours
   end
 
 	get_tour_search = lambda do
-    @tours = 'active'
+    @listings = 'active'
     @dashboard = 'none'
     slim :tours
   end
