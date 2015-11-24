@@ -10,3 +10,10 @@ gem 'httparty'
 gem 'slim'
 gem 'virtus'
 gem 'activemodel'
+
+group :test do
+  gem 'rack'
+  gem 'rack-test'
+  gem 'watir-webdriver'
+  gem 'headless'
+end
