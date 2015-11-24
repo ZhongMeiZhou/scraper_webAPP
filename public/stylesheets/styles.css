@@ -4,10 +4,28 @@ body {
     /*padding-top: 70px;*/
 }
 
-a {
+a,a:focus {
     outline: none;
 }
 
+
+.navbar-default .navbar-text {
+    color: #23527C;
+}
+
+.navbar-text {
+  margin-top:20px;
+  margin-left: 0px;
+}
+
+.navbar-text {
+  margin-bottom: 0px;
+}
+
+.nav, .nav-tabs
+{
+
+}
 /*
 .navbar-default .navbar-nav > li > a {
     color: white;
@@ -74,7 +92,3 @@ div.flash {
   color: red;
 }
 
-a:focus {
-    outline: 0;
-    outline-offset: 0;
-}
