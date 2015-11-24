@@ -42,7 +42,7 @@ a {
     /*margin-left: auto; /* added to center custom sized div */
     /*margin-right: auto; /* added to center custom sized div */
     color: black;
-    background-color: #CAE1FF;
+    background-color: white; /* #CAE1FF;*/
     text-align: center;
 }
 
