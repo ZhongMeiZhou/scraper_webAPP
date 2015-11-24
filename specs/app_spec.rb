@@ -15,13 +15,18 @@ describe 'Tour Stories' do
   	end
   end
 
-  after do
-  	@browser.close
-  	@headless.destroy
+  describe 'Tour Search' do
+    it 'can search for a tour' do
+      @browser.text_field(name: 'tour').set('belize')
 
+      @browser.button(id: 'btn_search').click
+
+      @browser.table(class: 'table table-condensed table-striped').rows.count.must_be :>=, 3
+    end
   end
 
-
-
-
+  #after do
+  	#@browser.close
+  	#@headless.destroy
+  #end
 end
