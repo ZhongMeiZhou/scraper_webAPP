@@ -1,13 +1,35 @@
 /* Override Bootstrap CSS */
 body {
     min-height: 50px;
-    padding-top: 70px;
+    /*padding-top: 70px;*/
 }
 
-a {
+a, a:focus {
     outline: none;
 }
 
+
+.navbar-default .navbar-text {
+    color: #23527C;
+}
+
+.navbar-text {
+  margin-top:20px;
+  margin-left: 0px;
+  margin-bottom: 0px;
+}
+
+.nav, .nav-tabs
+{
+
+}
+
+.navbar, .navbar-default{
+    background-color: white;
+    border: none;
+}
+
+/*
 .navbar-default .navbar-nav > li > a {
     color: white;
     outline: none;
@@ -31,16 +53,17 @@ a {
     background-color: black;
     border-color: #E7E7E7;
 }
+*/
 
 .jumbotron {
-    padding-top: 30px;
+    /*padding-top: 30px;
     padding-bottom: 30px;
     margin-bottom: 30px;
     width: 500px; /* custom sized div */
-    margin-left: auto; /* added to center custom sized div */
-    margin-right: auto; /* added to center custom sized div */
+    /*margin-left: auto; /* added to center custom sized div */
+    /*margin-right: auto; /* added to center custom sized div */
     color: black;
-    background-color: #CAE1FF;
+    background-color: white; /* #CAE1FF;*/
     text-align: center;
 }
 
@@ -71,3 +94,4 @@ div.flash {
   text-align: center;
   color: red;
 }
+
