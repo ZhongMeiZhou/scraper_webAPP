@@ -2,7 +2,8 @@ require 'virtus'
 
 class ToursResult
   include Virtus.model
-
+  
+  attribute :code
   attribute :id
   attribute :country
   attribute :tours
