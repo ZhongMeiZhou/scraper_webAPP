@@ -1,24 +1,17 @@
 .container
-	.panel.panel-default
-	  .panel-heading
-	    h3.panel-title Simple Search
-	  .panel-body
-			form.form-inline action="/tours" method="post" 
+	form.form-inline action="/tours" method="post" 
+		.panel.panel-default
+		  .panel-heading
+		    h3.panel-title Simple Search
+		  .panel-body
 			  .col-lg-8.centered
-			    .form-group.col-lg-7
-			      input#tour.form-control.col-lg-6 name="tour" placeholder=("Where do you want to go?") style="width: 100%;" type="text" value="#{@country}" 
-			    .form-group
-			      button#btn_search.btn.btn-primary type="submit"  Search Tours
-
-	.panel.panel-default
-	  .panel-body
-			form.form-horizontal
-				fieldset
-			    legend Optiona Search
-			    .form-group
-			      label.col-md-2.control-label for="inputPriceRange"  Email
-			      .col-md-10
-			      	<input type="text" id="price_range" name="price_range" value="" />
-			    .form-group
-			      .col-md-10.col-md-offset-2
-			        button.btn.btn-primary type="submit"  Submit
+			    .form-group.col-lg-12
+			      input#tour.form-control.col-lg-6 name="tour" placeholder=("Where do you want to go?") style="width: 100%;text-align:center;" type="text" value="#{@country}"
+		.panel.panel-default
+		  .panel-body
+				h5 Optional Search
+				.col-lg-12
+					label.col-md-2.control-label for="inputPriceRange"  Price Range
+					.col-md-10
+						<input type="text" id="inputPriceRange" name="inputPriceRange" value="" />
+		button#btn_search.btn.btn-primary type="submit"  Search Tours
