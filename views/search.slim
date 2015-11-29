@@ -1,94 +1,24 @@
 .container
-	<form class="form-inline" action="/tours" method='post'>
-	  <div class="form-group">
-	    <input type="text" class="form-control" id="tour" name="tour" placeholder="Where do you want to go?" value = #{@country}>
-	  </div>
-	  <button type="submit" id="btn_search" class="btn btn-primary">Search Tours</button>
-	</form>
+	.panel.panel-default
+	  .panel-heading
+	    h3.panel-title Simple Search
+	  .panel-body
+			form.form-inline action="/tours" method="post" 
+			  .col-lg-12
+			    .form-group.col-lg-6
+			      input#tour.form-control.col-lg-6 name="tour" placeholder=("Where do you want to go?") style="width: 100%;" type="text" value="#{@country}" 
+			    .form-group.col-lg-3
+			      button#btn_search.btn.btn-primary type="submit"  Search Tours
 
-	form.form-horizontal
-		fieldset
-	    legend Optiona Search
-	    .form-group
-	      label.col-md-2.control-label for="inputEmail"  Email
-	      .col-md-10
-	        input#inputEmail.form-control placeholder="Email" type="email" /
-	    .form-group
-	      label.col-md-2.control-label for="inputPassword"  Password
-	      .col-md-10
-	        input#inputPassword.form-control placeholder="Password" type="password" /
-	        /!
-	          | <div class="checkbox"
-	          | <label
-	          | <input type="checkbox"> Checkbox
-	          | </label
-	          | <label
-	          | <input type="checkbox" disabled> Disabled Checkbox
-	          | </label
-	          | </div
-	          | <br
-	          
-	          | <div class="togglebutton"
-	          | <label
-	          | <input type="checkbox" checked> Toggle button
-	          | </label
-	          | </div
-	    .form-group style=("margin-top: 0;") 
-	      /! inline style is just to demo custom css to put checkbox below input above
-	      .col-md-offset-2.col-md-10
-	        .checkbox
-	          label
-	            input type="checkbox" /
-	            | Checkbox
-	          label
-	            input disabled="" type="checkbox" /
-	            | Disabled Checkbox
-	    .form-group
-	      .col-md-offset-2.col-md-10
-	        .togglebutton
-	          label
-	            input checked="" type="checkbox" /
-	            | Toggle button
-	    .form-group
-	      label.col-md-2.control-label for="inputFile"  File
-	      .col-md-10
-	        input.form-control placeholder="Browse..." readonly="" type="text" /
-	        input#inputFile multiple="" type="file" /
-	    .form-group
-	      label.col-md-2.control-label for="textArea"  Textarea
-	      .col-md-10
-	        textarea#textArea.form-control rows="3" 
-	        span.help-block A longer block of help text that breaks onto a new line and may extend beyond one line.
-	    .form-group
-	      label.col-md-2.control-label Radios
-	      .col-md-10
-	        .radio.radio-primary
-	          label
-	            input#optionsRadios1 checked="" name="optionsRadios" type="radio" value="option1" /
-	            | Option one is this
-	        .radio.radio-primary
-	          label
-	            input#optionsRadios2 name="optionsRadios" type="radio" value="option2" /
-	            | Option two can be something else
-	    .form-group
-	      label.col-md-2.control-label for="select111"  Select
-	      .col-md-10
-	        select#select111.form-control
-	          option 1
-	          option 2
-	          option 3
-	          option 4
-	          option 5
-	    .form-group
-	      label.col-md-2.control-label for="select222"  Select Multiple
-	      .col-md-10
-	        select#select222.form-control multiple="" 
-	          option 1
-	          option 2
-	          option 3
-	          option 4
-	          option 5
-	    .form-group
-	      .col-md-10.col-md-offset-2
-	        button.btn.btn-default type="button"  Cancel
-	        button.btn.btn-primary type="submit"  Submit
+	.panel.panel-default
+	  .panel-body
+			form.form-horizontal
+				fieldset
+			    legend Optiona Search
+			    .form-group
+			      label.col-md-2.control-label for="inputPriceRange"  Email
+			      .col-md-10
+			      	.slider.shor
+			    .form-group
+			      .col-md-10.col-md-offset-2
+			        button.btn.btn-primary type="submit"  Submit
