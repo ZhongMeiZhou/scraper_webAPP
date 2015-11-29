@@ -34,11 +34,12 @@ html
   body 
    header
     == slim :nav
-    div class="container"
-     div class="jumbotron"
-       == styled_flash
-       == yield
-     == slim :footer  
+    .container
+     .jumbotron
+      == styled_flash
+      == slim :search   
+    == yield
+    == slim :footer  
     
    
     script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"
