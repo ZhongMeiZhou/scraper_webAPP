@@ -99,3 +99,8 @@ div.flash {
   width: 90px;
 }
 
+.centered{
+  float:none;
+  margin:0 auto;
+}
+
