@@ -1,6 +1,7 @@
 require 'httparty'
 require 'json'
 require_relative '../forms/tour_form'
+require_relative '../services/check_tour'
 
 module WebAppHelper
 
