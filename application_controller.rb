@@ -18,7 +18,7 @@ class ApplicationController < Sinatra::Base
 		set :session_secret, 'zmz!'
     set :api_ver, 'api/v1'
 	end
-	
+
 	configure :production, :development, :test do
     set :api_server, 'http://zmztours.herokuapp.com'
   end
@@ -39,11 +39,10 @@ class ApplicationController < Sinatra::Base
     @dashboard = 'none'
     slim :tours
   end
-	
-	post_tours = lambda do
-    request_url = "#{settings.api_server}/#{settings.api_ver}/tours"
-    country_tour = post_api_tour(params[:tour], request_url)
 
+	post_tours = lambda do
+    country_tour = post_api_tour(params[:tour], settings)
+		
     if country_tour[:status] == true
       session[:results] = country_tour[:result]
       session[:action] = :create
@@ -58,8 +57,7 @@ class ApplicationController < Sinatra::Base
     if session[:action] == :create
       @results = JSON.parse(session[:results])
     else
-      request_url = "#{settings.api_server}/#{settings.api_ver}/tours/#{params[:id]}"
-      get_api_tours (request_url)
+      get_api_tours (settings, params[:id])
       if @results.code != 200
         flash[:notice] = "Cannot find any tours for #{params[:country]}"
         redirect "/tours"
