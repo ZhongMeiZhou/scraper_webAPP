@@ -95,3 +95,12 @@ div.flash {
   color: red;
 }
 
+.brand-img{
+  width: 90px;
+}
+
+.centered{
+  float:none;
+  margin:0 auto;
+}
+

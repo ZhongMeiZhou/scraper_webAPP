@@ -9,21 +9,131 @@ html
     
     / override bootstrap if necessary
     link rel="stylesheet" media="screen" type="text/css" href="/stylesheets/styles.css"
+
+    / Material Design dependencies
+    link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.0/css/bootstrap-material-design.css" type="text/css"
+
+    link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.0/css/bootstrap-material-design.css" type="text/css"
+
+    link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.0/css/bootstrap-material-design.css.map" type="text/css"
+
+    link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.0/css/bootstrap-material-design.min.css" type="text/css"
+
+    link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.0/css/bootstrap-material-design.min.css.map" type="text/css"
+
+    link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.0/css/ripples.css" type="text/css"
+
+    link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.0/css/ripples.css.map" type="text/css"
+
+    link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.0/css/ripples.min.css" type="text/css"
+
+    link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.0/css/ripples.min.css.map" type="text/css"
+
+    link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.1.2/css/ion.rangeSlider.min.css" type="text/css"
+
+    link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.1.2/css/ion.rangeSlider.skinFlat.min.css" type="text/css"
+
     title ZmZ
      
   body 
    header
     == slim :nav
-    div class="container"
-     div class="jumbotron"
-       == styled_flash
-       == yield
-     == slim :footer  
+    .container
+     .jumbotron
+      == styled_flash
+      == slim :search   
+    == yield
+    == slim :footer  
     
    
     script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"
     script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"
     script type="text/javascript" src="https://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"
+
+    script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.0/js/material.js"
+
+    script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.0/js/material.min.js"
+
+    script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.0/js/material.min.js.map"
+
+    script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.0/js/ripples.js"
+
+    script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.0/js/ripples.min.js"
+
+    script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.0/js/ripples.min.js.map"
+
+    script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.1.2/js/ion.rangeSlider.min.js"
+
+    script type="text/javascript" src="http://code.highcharts.com/highcharts.js"
+
     /[if lt IE 9] 
       script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"
       script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"
+
+    javascript:
+      $.material.init()
+      $("#inputPriceRange").ionRangeSlider({
+        type: "double",
+        grid: true,
+        min: 0,
+        max: 1000,
+        from: 200,
+        to: 800,
+        prefix: "$"
+      });
+      $('#graph_category').highcharts({
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'Tours Available by category and country'
+        },
+        subtitle: {
+            text: 'Source: lonelyplanet.com'
+        },
+        xAxis: {
+            categories: [
+                'History',
+                'Culture',
+                'Small Groups',
+                'Adventure'
+            ],
+            crosshair: true
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Tours Available (number)'
+            }
+        },
+        tooltip: {
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+        },
+        plotOptions: {
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+            }
+        },
+        series: [{
+            name: 'Taiwan',
+            data: [49.9, 71.5, 106.4, 129.2]
+
+        }, {
+            name: 'Honduras',
+            data: [83.6, 78.8, 98.5, 93.4]
+
+        }, {
+            name: 'Belize',
+            data: [48.9, 38.8, 39.3, 41.4]
+
+        }, {
+            name: 'Nicaragua',
+            data: [42.4, 33.2, 34.5, 39.7]
+
+        }]});
