@@ -18,7 +18,18 @@
 			    .form-group
 			      label.col-md-2.control-label for="inputPriceRange"  Email
 			      .col-md-10
-			      	.slider.shor
+			      	<input type="text" id="price_range" name="price_range" value="" />
 			    .form-group
 			      .col-md-10.col-md-offset-2
 			        button.btn.btn-primary type="submit"  Submit
+
+javascript:
+	$("#price_range").ionRangeSlider({
+	    type: "double",
+	    grid: true,
+	    min: 0,
+	    max: 1000,
+	    from: 200,
+	    to: 800,
+	    prefix: "$"
+	});
