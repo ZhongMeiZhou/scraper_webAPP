@@ -1,6 +1,6 @@
 require 'virtus'
 require 'active_model'
-require '../forms/tourResult_form'
+require_relative '../forms/tourResult_form'
 
 class CheckToursFromAPI
   def initialize(api, params_h)
@@ -12,10 +12,8 @@ class CheckToursFromAPI
 
   def call
     result = HTTParty.post(@request_url, @options)
-    puts result
-    tours_result = TourResult.new(result)
+    tours_result = ToursResult.new(result)
     tours_result.code = result.code
-    #tours_result.id =  result.request.last_uri.path.split('/').last
     tours_result
   end
 end

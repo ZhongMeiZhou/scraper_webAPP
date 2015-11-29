@@ -21,8 +21,7 @@ module WebAppHelper
     	if (results.code != 200)
 				{ :status => false, :message => "The Pony Express did not deliver the goods." }
     	else
-	    	##id = results.request.last_uri.path.split('/').last
-				{ :status => true, :result => results.to_json, :id => results.id }
+				{ :status => true, :result => results.to_json }
 			end
 		end
 	end
