@@ -21,7 +21,7 @@ describe 'Tour Stories' do
 
       @browser.button(id: 'btn_search').click
 
-      @browser.table(class: 'table table-condensed table-striped').rows.count.must_be :>=, 3
+      @browser.table(class: 'table table-striped').rows.count.must_be :>=, 3
     end
   end
 
