@@ -1,10 +1,10 @@
 #LPTours Web service
 
-## Endpoint
-  
+## Service URL
+
   ```sh
  http://lptours.herokuapp.com/
- ``` 
+ ```
 ## Description
 
 This is the web service of the API [ZMZ_Tours] (https://github.com/ZhongMeiZhou/scraper_webAPI)
