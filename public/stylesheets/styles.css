@@ -1,6 +1,8 @@
 /* Override Bootstrap CSS */
 body {
     min-height: 50px;
+    background-color: white;
+    color:black;
     /*padding-top: 70px;*/
 }
 
@@ -8,7 +10,7 @@ a, a:focus {
     outline: none;
 }
 
-
+/* Menu bar */
 .navbar-default .navbar-text {
     color: #23527C;
 }
@@ -29,6 +31,51 @@ a, a:focus {
     border: none;
 }
 
+/* Override material-design components */
+label.control-label {
+    color: black;
+}
+
+.panel-body {
+    padding: 15px; 
+}
+
+.checkbox label, .radio label, label {
+    font-size: 12px;
+    line-height: 1.42857;
+    color: black;
+    font-weight: 400;
+}
+
+.irs-min, .irs-max {
+    color: black;
+    font-size: 10px;
+    line-height: 1.333;
+    text-shadow: none;
+    top: 0px;
+    padding: 1px 3px;
+    background: #E1E4E9 none repeat scroll 0% 0%;
+    border-radius: 4px;
+}
+
+.irs-grid-text {
+    color: black;
+}
+
+.checkbox .checkbox-material .check {
+    position: relative;
+    display: inline-block;
+    border: 2px solid black;
+    overflow: hidden;
+    z-index: 1;
+}
+
+
+.panel-default > .panel-heading {
+    color: #333;
+    background-color: #F5F5F5;
+    border-color: #DDD;
+}
 /*
 .navbar-default .navbar-nav > li > a {
     color: white;
@@ -63,7 +110,7 @@ a, a:focus {
     /*margin-left: auto; /* added to center custom sized div */
     /*margin-right: auto; /* added to center custom sized div */
     color: black;
-    background-color: white; /* #CAE1FF;*/
+    background-color: black; /* #CAE1FF;*/
     text-align: center;
 }
 
@@ -75,7 +122,7 @@ a, a:focus {
 }
 
 .form-control {
-  
+  color:black;
     
 }
 
