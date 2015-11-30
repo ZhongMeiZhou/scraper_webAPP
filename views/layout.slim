@@ -7,17 +7,12 @@ html
     
     link rel="stylesheet" media="screen" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"
     
-    / override bootstrap if necessary
-    link rel="stylesheet" media="screen" type="text/css" href="/stylesheets/styles.css"
-
     / Material Design dependencies
     link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.0/css/bootstrap-material-design.css" type="text/css"
 
-    link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.0/css/bootstrap-material-design.css" type="text/css"
-
-    link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.0/css/bootstrap-material-design.css.map" type="text/css"
-
     link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.0/css/bootstrap-material-design.min.css" type="text/css"
+
+
 
     link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.0/css/bootstrap-material-design.min.css.map" type="text/css"
 
@@ -33,6 +28,8 @@ html
 
     link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.1.2/css/ion.rangeSlider.skinFlat.min.css" type="text/css"
 
+    link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" type="text/css"
+
     title ZmZ
      
   body 
@@ -45,7 +42,8 @@ html
     == yield
     == slim :footer  
     
-   
+    / override bootstrap if necessary
+    link rel="stylesheet" media="screen" type="text/css" href="/stylesheets/styles.css"
     script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"
     script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"
     script type="text/javascript" src="https://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"

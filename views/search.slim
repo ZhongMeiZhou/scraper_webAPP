@@ -1,23 +1,20 @@
 .container
 	form.form-inline action="/tours" method="post" 
-		.panel.panel-default
+	   .panel-group#accordion
+		.panel.panel-default#panel1
 		  .panel-heading
-		    h3.panel-title Simple Search
+		    h3.panel-title <a data-toggle="collapse" data-target="#collapsefilter" href="#collapsefilter"> Filter </a>
+		  <div id="collapsefilter" class="panel-collapse collapse in">
 		  .panel-body
-			  .col-lg-8.centered
-			    .form-group.col-lg-12
-			      input#tour.form-control.col-lg-6 name="tour" placeholder=("Where do you want to go?") style="width: 100%;text-align:center;" type="text" value="#{@country}"
-		.panel.panel-default
-		  .panel-body
-				h5 Optional Search
-				.col-lg-12
-					label.col-md-2.control-label for="inputPriceRange"  Price Range
+			    .col-lg-12
+					label.col-md-2.control-label for="tour" Country:
+			        .col-md-10
+			          input#tour name="tour" placeholder=("Where do you want to go?") style="width: 100%;text-align:center;color:black;" type="text" value="#{@country}"
+
+			    .col-lg-12
+					label.col-md-2.control-label Category:
 					.col-md-10
-						<input type="text" id="inputPriceRange" name="inputPriceRange" value="" />
-				.col-lg-12
-					label.col-md-2.control-label for="inputPriceRange"  Category
-					.col-md-10
-						.checkbox
+					  .checkbox
 						  label
 						    input type="checkbox" /
 						    | History
@@ -31,4 +28,11 @@
 						    input type="checkbox" /
 						    | Adventure
 
-		button#btn_search.btn.btn-primary type="submit"  Search Tours
+				.col-lg-12
+					label.col-md-2.control-label for="inputPriceRange" Price range:
+					.col-md-10
+					  input type="text" id="inputPriceRange" name="inputPriceRange" value=""
+
+                .col-lg-12
+			        button.btn.btn-raised.btn-info type="submit" Take Off
+		

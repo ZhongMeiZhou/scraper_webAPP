@@ -6,8 +6,9 @@ body {
     /*padding-top: 70px;*/
 }
 
-a, a:focus {
+a, a:focus, a:hover, .panel-title {
     outline: none;
+    color: blue;
 }
 
 /* Menu bar */
@@ -48,14 +49,7 @@ label.control-label {
 }
 
 .irs-min, .irs-max {
-    color: black;
-    font-size: 10px;
-    line-height: 1.333;
-    text-shadow: none;
-    top: 0px;
-    padding: 1px 3px;
-    background: #E1E4E9 none repeat scroll 0% 0%;
-    border-radius: 4px;
+    
 }
 
 .irs-grid-text {
@@ -70,11 +64,26 @@ label.control-label {
     z-index: 1;
 }
 
+.panel-title {
+    font-size: 16px;
+    color: black;
+    font-weight: bold;
+}
 
 .panel-default > .panel-heading {
     color: #333;
     background-color: #F5F5F5;
     border-color: #DDD;
+}
+
+.panel-heading a:after {
+    font-family:'Glyphicons Halflings';
+    content:"\e114";
+    float: right;
+    color: grey;
+}
+.panel-heading a.collapsed:after {
+    content:"\e080";
 }
 /*
 .navbar-default .navbar-nav > li > a {
@@ -111,7 +120,7 @@ label.control-label {
     /*margin-right: auto; /* added to center custom sized div */
     color: black;
     background-color: black; /* #CAE1FF;*/
-    text-align: center;
+    text-align: left;
 }
 
 .table > thead > tr > th {
@@ -123,7 +132,11 @@ label.control-label {
 
 .form-control {
   color:black;
-    
+}
+
+.form-inline .control-label {
+    vertical-align: middle;
+    margin-bottom: 15px;
 }
 
 .footer {
