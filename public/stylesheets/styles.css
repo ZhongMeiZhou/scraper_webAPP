@@ -112,6 +112,7 @@ body .container .well, body .container-fluid .well, body .container .jumbotron, 
    outline: none;
 }
 
+/* eror message */
 div.flash {
   color:red;
   text-align: center;
