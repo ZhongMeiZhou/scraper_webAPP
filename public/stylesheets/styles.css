@@ -66,8 +66,12 @@ label.control-label {
 
 .panel-title {
     font-size: 16px;
-    color: black;
+    color: blue;
     font-weight: bold;
+}
+
+.panel-title > .small, .panel-title > .small > a, .panel-title > a, .panel-title > small, .panel-title > small > a {
+    color: blue;
 }
 
 .panel-default > .panel-heading {
@@ -84,6 +88,42 @@ label.control-label {
 }
 .panel-heading a.collapsed:after {
     content:"\e080";
+}
+
+/* override filter box */
+body .container .well, body .container-fluid .well, body .container .jumbotron, body .container-fluid .jumbotron {
+    background-color: transparent;
+    padding: 19px;
+    margin-bottom: 20px;
+    box-shadow: none;
+    border-radius: 2px;
+    border: 0px none;
+}
+
+.jumbotron .container {
+    max-width: 100%;
+    background: transparent;
+    width: 750px;
+}
+
+.btn, .input-group-btn .btn {
+   padding: 8px;
+   font-weight: bold;
+   outline: none;
+}
+
+div.flash {
+  color:red;
+  text-align: center;
+}
+
+.brand-img{
+  width: 90px;
+}
+
+.centered{
+  float:none;
+  margin:0 auto;
 }
 /*
 .navbar-default .navbar-nav > li > a {
@@ -111,18 +151,6 @@ label.control-label {
 }
 */
 
-.jumbotron {
-    /*padding-top: 30px;
-    padding-bottom: 30px;
-    margin-bottom: 30px;
-    width: 500px; /* custom sized div */
-    /*margin-left: auto; /* added to center custom sized div */
-    /*margin-right: auto; /* added to center custom sized div */
-    color: black;
-    background-color: black; /* #CAE1FF;*/
-    text-align: left;
-}
-
 .table > thead > tr > th {
     vertical-align: bottom;
     border-bottom: 2px solid #DDD;
@@ -149,18 +177,3 @@ label.control-label {
   outline:none;
   text-align: center;
 }
-
-div.flash {
-  text-align: center;
-  color: red;
-}
-
-.brand-img{
-  width: 90px;
-}
-
-.centered{
-  float:none;
-  margin:0 auto;
-}
-

@@ -7,32 +7,23 @@
 		  <div id="collapsefilter" class="panel-collapse collapse in">
 		  .panel-body
 			    .col-lg-12
-					label.col-md-2.control-label for="tour" Country:
+					label.col-md-2.control-label for="countries" Country:
 			        .col-md-10
-			          input#tour name="tour" placeholder=("Where do you want to go?") style="width: 100%;text-align:center;color:black;" type="text" value="#{@country}"
+			          select class = "countries" multiple="multiple" id = "countries" style="width:100%"
+			           option value="BZ" Belize
+			           option value="TW" Taiwan
 
 			    .col-lg-12
-					label.col-md-2.control-label Category:
-					.col-md-10
-					  .checkbox
-						  label
-						    input type="checkbox" /
-						    | History
-						  label
-						    input type="checkbox" /
-						    | Culture
-						  label
-						    input type="checkbox" /
-						    | Small Groups
-						  label
-						    input type="checkbox" /
-						    | Adventure
+			      label.col-md-2.control-label for="categories" Category (optional):
+			      .col-md-10
+				    select class = "categories" multiple="multiple" id = "categories" style="width:100%"
+			          option value="Outdoor" Outdoor
+			          option value="Romantic" Romantic
 
 				.col-lg-12
-					label.col-md-2.control-label for="inputPriceRange" Price range:
+					label.col-md-2.control-label for="inputPriceRange" Price range (optional):
 					.col-md-10
 					  input type="text" id="inputPriceRange" name="inputPriceRange" value=""
 
-                .col-lg-12
-			        button.btn.btn-raised.btn-info type="submit" Take Off
-		
+                    .col-md-10
+			          button.btn.btn-raised.btn-info type="submit" Take Off
