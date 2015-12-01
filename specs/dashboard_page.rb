@@ -3,7 +3,7 @@ require 'page-object'
 class DashboardPage
   include PageObject
 
-  page_url 'http://localhost:9292'
+  page_url 'http://localhost:3000'
 
   # define filter elements
   select_list(:countries, :id => 'countries')
