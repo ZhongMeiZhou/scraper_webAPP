@@ -2,7 +2,7 @@
 
 ## Application URL
 
- [ZMZ_Tours] (http://lptours.herokuapp.com/)
+ [http://lptours.herokuapp.com/] (http://lptours.herokuapp.com/)
  
 ## Description
 
