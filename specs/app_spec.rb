@@ -16,6 +16,8 @@ describe 'Tour Stories' do
   	it 'finds the title' do
       visit DashboardPage do |page|
         page.title.must_equal 'ZmZ TraViz'
+        page.countries_options.size.must_be :>=, 1
+        page.categories_options.size.must_be :>=, 1
       end
   	end
   end
