@@ -13,7 +13,7 @@ describe 'Tour Stories' do
   end
 
   describe 'Visiting Dashboard' do
-  	it 'finds the title' do
+  	it 'finds the title and check dropdowns' do
       visit DashboardPage do |page|
         page.title.must_equal 'ZmZ TraViz'
         page.countries_options.size.must_be :>=, 1

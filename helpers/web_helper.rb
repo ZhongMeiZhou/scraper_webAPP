@@ -10,7 +10,7 @@ module WebAppHelper
     submit.country = country
 
     if submit.valid? == false
-      { status: false, message: 'You broke it!' }
+      { status: false, message: submit.errors }
     else
       begin
         results = CheckToursFromAPI.new(settings, submit).call

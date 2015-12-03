@@ -41,7 +41,7 @@ class ApplicationController < Sinatra::Base
   end
 
 	post_tours = lambda do
-    country_tour = post_api_tour(params[:tour], settings)
+    country_tour = post_api_tour(params[:country], settings)
 
     if country_tour[:status] == true
       session[:results] = country_tour[:result]
