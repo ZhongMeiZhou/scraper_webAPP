@@ -1,34 +1,29 @@
 .container
 	form.form-inline action="/tours" method="post" 
-		.panel.panel-default
+	   .panel-group#accordion
+		.panel.panel-default#panel1
 		  .panel-heading
-		    h3.panel-title Simple Search
+		    h3.panel-title <a data-toggle="collapse" data-target="#collapsefilter" href="#collapsefilter"> Filter </a>
+		  <div id="collapsefilter" class="panel-collapse collapse in">
 		  .panel-body
-			  .col-lg-8.centered
-			    .form-group.col-lg-12
-			      input#tour.form-control.col-lg-6 name="tour" placeholder=("Where do you want to go?") style="width: 100%;text-align:center;" type="text" value="#{@country}"
-		.panel.panel-default
-		  .panel-body
-				h5 Optional Search
-				.col-lg-12
-					label.col-md-2.control-label for="inputPriceRange"  Price Range
-					.col-md-10
-						<input type="text" id="inputPriceRange" name="inputPriceRange" value="" />
-				.col-lg-12
-					label.col-md-2.control-label for="inputPriceRange"  Category
-					.col-md-10
-						.checkbox
-						  label
-						    input type="checkbox" /
-						    | History
-						  label
-						    input type="checkbox" /
-						    | Culture
-						  label
-						    input type="checkbox" /
-						    | Small Groups
-						  label
-						    input type="checkbox" /
-						    | Adventure
+			    .col-lg-12
+					label.col-md-2.control-label for="countries" Country:
+			        .col-md-10
+			          select class="countries" multiple="multiple" id="country" name="country" style="width:100%"
+			           option value="Belize" Belize
+			           option value="Taiwan" Taiwan
 
-		button#btn_search.btn.btn-primary type="submit"  Search Tours
+			    .col-lg-12
+			        label.col-md-2.control-label for="categories" Category (optional):
+			        .col-md-10
+				      select class="categories" multiple="multiple" id="categories" style="width:100%"
+			           option value="Outdoor" Outdoor
+			           option value="Romantic" Romantic
+
+				.col-lg-12
+					label.col-md-2.control-label for="inputPriceRange" Price range (optional):
+					.col-md-10
+					  input type="text" id="inputPriceRange" name="inputPriceRange" value=""
+
+                    .col-md-10
+			          button.btn.btn-raised.btn-info id = "filter" type="submit" Take Off

@@ -1,14 +1,17 @@
 /* Override Bootstrap CSS */
 body {
     min-height: 50px;
+    background-color: white;
+    color:black;
     /*padding-top: 70px;*/
 }
 
-a, a:focus {
+a, a:focus, a:hover, .panel-title {
     outline: none;
+    color: blue;
 }
 
-
+/* Menu bar */
 .navbar-default .navbar-text {
     color: #23527C;
 }
@@ -29,6 +32,100 @@ a, a:focus {
     border: none;
 }
 
+/* Override material-design components */
+label.control-label {
+    color: black;
+}
+
+.panel-body {
+    padding: 15px; 
+}
+
+.checkbox label, .radio label, label {
+    font-size: 12px;
+    line-height: 1.42857;
+    color: black;
+    font-weight: 400;
+}
+
+.irs-min, .irs-max {
+    
+}
+
+.irs-grid-text {
+    color: black;
+}
+
+.checkbox .checkbox-material .check {
+    position: relative;
+    display: inline-block;
+    border: 2px solid black;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.panel-title {
+    font-size: 16px;
+    color: blue;
+    font-weight: bold;
+}
+
+.panel-title > .small, .panel-title > .small > a, .panel-title > a, .panel-title > small, .panel-title > small > a {
+    color: blue;
+}
+
+.panel-default > .panel-heading {
+    color: #333;
+    background-color: #F5F5F5;
+    border-color: #DDD;
+}
+
+.panel-heading a:after {
+    font-family:'Glyphicons Halflings';
+    content:"\e114";
+    float: right;
+    color: grey;
+}
+.panel-heading a.collapsed:after {
+    content:"\e080";
+}
+
+/* override filter box */
+body .container .well, body .container-fluid .well, body .container .jumbotron, body .container-fluid .jumbotron {
+    background-color: transparent;
+    padding: 19px;
+    margin-bottom: 20px;
+    box-shadow: none;
+    border-radius: 2px;
+    border: 0px none;
+}
+
+.jumbotron .container {
+    max-width: 100%;
+    background: transparent;
+    width: 750px;
+}
+
+.btn, .input-group-btn .btn {
+   padding: 8px;
+   font-weight: bold;
+   outline: none;
+}
+
+/* eror message */
+div.flash {
+  color:red;
+  text-align: center;
+}
+
+.brand-img{
+  width: 90px;
+}
+
+.centered{
+  float:none;
+  margin:0 auto;
+}
 /*
 .navbar-default .navbar-nav > li > a {
     color: white;
@@ -55,18 +152,6 @@ a, a:focus {
 }
 */
 
-.jumbotron {
-    /*padding-top: 30px;
-    padding-bottom: 30px;
-    margin-bottom: 30px;
-    width: 500px; /* custom sized div */
-    /*margin-left: auto; /* added to center custom sized div */
-    /*margin-right: auto; /* added to center custom sized div */
-    color: black;
-    background-color: white; /* #CAE1FF;*/
-    text-align: center;
-}
-
 .table > thead > tr > th {
     vertical-align: bottom;
     border-bottom: 2px solid #DDD;
@@ -75,8 +160,12 @@ a, a:focus {
 }
 
 .form-control {
-  
-    
+  color:black;
+}
+
+.form-inline .control-label {
+    vertical-align: middle;
+    margin-bottom: 15px;
 }
 
 .footer {
@@ -89,18 +178,3 @@ a, a:focus {
   outline:none;
   text-align: center;
 }
-
-div.flash {
-  text-align: center;
-  color: red;
-}
-
-.brand-img{
-  width: 90px;
-}
-
-.centered{
-  float:none;
-  margin:0 auto;
-}
-

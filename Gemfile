@@ -16,4 +16,5 @@ group :test do
   gem 'rack-test'
   gem 'watir-webdriver'
   gem 'headless'
+  gem 'page-object'
 end
