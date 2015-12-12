@@ -1,42 +1,25 @@
-.container
-<form class="ui form" action="/tours" method='post'>
-  <h4 class="ui dividing header">Shipping Information</h4>
-  <div class="field">
-    <label>Card Type</label>
-    <div class="ui selection dropdown">
-      <input type="hidden" name="card[type]">
-      <div class="default text">Type</div>
-      <i class="dropdown icon"></i>
-      <div class="menu">
-        <div class="item" data-value="visa">
-          <i class="visa icon"></i>
-          Visa
-        </div>
-        <div class="item" data-value="amex">
-          <i class="amex icon"></i>
-          American Express
-        </div>
-        <div class="item" data-value="discover">
-          <i class="discover icon"></i>
-          Discover
-        </div>
-      </div>
-    </div>
-  </div>
-</form>
-
 - if @results
-  table class='table table-condensed table-striped'
-   thead
-    tr
-     th Tours
-     th Price(USD)
-    tbody
-          - @tours.each do | tour |
-            tr
-              td
-                = tour['title']
-              td
-                = tour['price']
-javascript:
- $('.ui.selection.dropdown').dropdown()
+  .container
+    .jumbotron
+      div#graph_category style=("min-width: 310px; height: 400px; margin: 0 auto") 
+  .container
+    .jumbotron
+      table class='table table-striped table-striped table-hover '
+       thead
+        tr
+         th Tours
+         th Price(USD)
+        tbody
+              - @tours.each_with_index do | tour,index |
+                - if index % 2 == 0 
+                  tr
+                    td
+                      = tour['title']
+                    td
+                      = tour['price']
+                - else
+                  tr.info
+                    td
+                      = tour['title']
+                    td
+                      = tour['price']

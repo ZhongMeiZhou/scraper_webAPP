@@ -7,9 +7,11 @@ class TourForm
   include ActiveModel::Serializers::JSON
   include ActiveModel::Validations
 
-  attribute :country, String
+  attribute :tour_countries, String
+  attribute :tour_categories, String
 
-  validates :country, presence: true
+  validates :tour_countries, presence: true
+  validates :tour_categories, presence: true
 
   def error_fields
     errors.messages.keys.map(&:to_s).join(', ')
