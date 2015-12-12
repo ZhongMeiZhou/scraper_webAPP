@@ -7,7 +7,7 @@ class DashboardPage
 
   # define filter elements
   select_list(:countries, :id => 'tour_countries')
-  select_list(:categories, :id => 'categories')
+  select_list(:categories, :id => 'tour_categories')
   text_field(:price, :id => 'inputPriceRange')
   button(:filter, id: 'filter')
 
