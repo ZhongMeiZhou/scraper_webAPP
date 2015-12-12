@@ -64,7 +64,7 @@ a, a:focus {
     /*margin-right: auto; /* added to center custom sized div */
     color: black;
     background-color: white; /* #CAE1FF;*/
-    text-align: center;
+    text-align: left;
 }
 
 .table > thead > tr > th {
