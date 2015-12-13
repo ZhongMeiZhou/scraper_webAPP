@@ -41,13 +41,21 @@ class ApplicationController < Sinatra::Base
   end
 
 	post_tours = lambda do
+<<<<<<< HEAD
     tours = post_api_tour(params[:tour_countries], params[:tour_categories], settings)
     logger.info(tours)
+=======
+    country_tour = post_api_tour(params[:country], settings)
+>>>>>>> 34c61ce06f2566a3a96a292d35a4c405fccf9aa6
 
     if tours[:status] == true
       session[:results] = tours[:result]
       session[:action] = :create
+<<<<<<< HEAD
 			redirect "/tours/compare"
+=======
+			redirect "/tours/#{country_tour[:result]['id']}"
+>>>>>>> 34c61ce06f2566a3a96a292d35a4c405fccf9aa6
     else
       flash[:notice] = tours[:message]
       redirect "/tours"
@@ -59,9 +67,15 @@ class ApplicationController < Sinatra::Base
     if session[:action] == :create
       @results = JSON.parse(session[:results])
     else
+<<<<<<< HEAD
       #get_api_tours(settings, params[:id])
       #if @results.code != 200
         flash[:notice] = "No results found"
+=======
+      get_api_tours(settings, params[:id])
+      if @results.code != 200
+        flash[:notice] = "Cannot find any tours for #{params[:country]}"
+>>>>>>> 34c61ce06f2566a3a96a292d35a4c405fccf9aa6
         redirect "/tours"
       #end
     end
