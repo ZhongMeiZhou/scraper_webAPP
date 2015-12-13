@@ -41,30 +41,33 @@ class ApplicationController < Sinatra::Base
   end
 
 	post_tours = lambda do
-    country_tour = post_api_tour(params[:country], settings)
+    tours = post_api_tour(params[:tour_countries], params[:tour_categories], settings)
+    logger.info(tours)
 
-    if country_tour[:status] == true
-      session[:results] = country_tour[:result]
+    if tours[:status] == true
+      session[:results] = tours[:result]
       session[:action] = :create
-			redirect "/tours/#{country_tour[:result]['id']}"
+			redirect "/tours/compare"
     else
-      flash[:notice] = country_tour[:message]
+      flash[:notice] = tours[:message]
       redirect "/tours"
     end
   end
 
-	get_tours = lambda do
+  # here pass in results used to generate visualization
+	get_tours_visualization = lambda do
     if session[:action] == :create
       @results = JSON.parse(session[:results])
     else
-      get_api_tours(settings, params[:id])
-      if @results.code != 200
-        flash[:notice] = "Cannot find any tours for #{params[:country]}"
+      #get_api_tours(settings, params[:id])
+      #if @results.code != 200
+        flash[:notice] = "No results found"
         redirect "/tours"
-      end
+      #end
     end
-    @country = @results['country'].upcase
-    @tours = JSON.parse(@results['tours'])
+    #@country = @results['country'].upcase
+    @tours = @results['tours']
+    #logger.info(@results)
     slim :tours
   end
 
@@ -72,5 +75,5 @@ class ApplicationController < Sinatra::Base
   get '/', &get_root
   get "/tours", &get_tour_search
   post "/tours", &post_tours
-  get '/tours/:id', &get_tours
+  get '/tours/compare', &get_tours_visualization
 end
