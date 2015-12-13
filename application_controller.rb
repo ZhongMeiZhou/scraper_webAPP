@@ -6,56 +6,48 @@ require_relative './helpers/web_helper.rb'
 
 #Main app controller
 class ApplicationController < Sinatra::Base
-	include WebAppHelper
+  include WebAppHelper
 
-	enable :sessions
-	register Sinatra::Flash
+  enable :sessions
+  register Sinatra::Flash
 
-	set :views, File.expand_path('../views', __FILE__)
-	set :public_folder, File.expand_path('../public', __FILE__)
+  set :views, File.expand_path('../views', __FILE__)
+  set :public_folder, File.expand_path('../public', __FILE__)
 
-	configure do
-		set :session_secret, 'zmz!'
+  configure do
+    set :session_secret, 'zmz!'
     set :api_ver, 'api/v1'
-	end
+  end
 
-	configure :production, :development, :test do
+  configure :production, :development, :test do
     set :api_server, 'http://zmztours.herokuapp.com'
   end
 
-	configure :production, :development do
+  configure :production, :development do
     enable :logging
   end
 
-	# GUI route definitions
- 	get_root = lambda do
+  # GUI route definitions
+  get_root = lambda do
     @dashboard = 'active'
     @listings = 'none'
     slim :tours
   end
 
-	get_tour_search = lambda do
+  get_tour_search = lambda do
     @listings = 'active'
     @dashboard = 'none'
     slim :tours
   end
 
-	post_tours = lambda do
-<<<<<<< HEAD
+  post_tours = lambda do
     tours = post_api_tour(params[:tour_countries], params[:tour_categories], settings)
     logger.info(tours)
-=======
-    country_tour = post_api_tour(params[:country], settings)
->>>>>>> 34c61ce06f2566a3a96a292d35a4c405fccf9aa6
 
     if tours[:status] == true
       session[:results] = tours[:result]
       session[:action] = :create
-<<<<<<< HEAD
-			redirect "/tours/compare"
-=======
-			redirect "/tours/#{country_tour[:result]['id']}"
->>>>>>> 34c61ce06f2566a3a96a292d35a4c405fccf9aa6
+      redirect "/tours/compare"
     else
       flash[:notice] = tours[:message]
       redirect "/tours"
@@ -63,19 +55,13 @@ class ApplicationController < Sinatra::Base
   end
 
   # here pass in results used to generate visualization
-	get_tours_visualization = lambda do
+  get_tours_visualization = lambda do
     if session[:action] == :create
       @results = JSON.parse(session[:results])
     else
-<<<<<<< HEAD
       #get_api_tours(settings, params[:id])
       #if @results.code != 200
         flash[:notice] = "No results found"
-=======
-      get_api_tours(settings, params[:id])
-      if @results.code != 200
-        flash[:notice] = "Cannot find any tours for #{params[:country]}"
->>>>>>> 34c61ce06f2566a3a96a292d35a4c405fccf9aa6
         redirect "/tours"
       #end
     end
