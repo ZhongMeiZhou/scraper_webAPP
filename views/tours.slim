@@ -1,22 +1,25 @@
-.container
-<form class="form-inline" action="/tours" method='post'>
-  <div class="form-group">
-    <input type="text" class="form-control" id="tour" name="tour" placeholder="Where do you want to go?" value = #{@country}>
-  </div>
-  <button type="submit" id="btn_search" class="btn btn-primary">Search Tours</button>
-</form>
-
 - if @results
-  table class='table table-condensed table-striped'
-   thead
-    tr
-     th Tours
-     th Price(USD)
-    tbody
-          - @tours.each do | tour |
-            tr
-              td
-                = tour['title']
-              td
-                = tour['price']
-
+  .container
+    .jumbotron
+      div#graph_category style=("min-width: 310px; height: 400px; margin: 0 auto") 
+  .container
+    .jumbotron
+      table class='table table-striped table-striped table-hover '
+       thead
+        tr
+         th Tours
+         th Price(USD)
+        tbody
+              - @tours.each_with_index do | tour,index |
+                - if index % 2 == 0 
+                  tr
+                    td
+                      = tour['title']
+                    td
+                      = tour['price']
+                - else
+                  tr.info
+                    td
+                      = tour['title']
+                    td
+                      = tour['price']

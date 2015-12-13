@@ -1,0 +1,29 @@
+.container
+	form.form-inline action="/tours" method="post" 
+	   .panel-group#accordion
+		.panel.panel-default#panel1
+		  .panel-heading
+		    h3.panel-title <a data-toggle="collapse" data-target="#collapsefilter" href="#collapsefilter"> Filter </a>
+		  <div id="collapsefilter" class="panel-collapse collapse in">
+		  .panel-body
+			    .col-lg-12
+					label.col-md-2.control-label for="countries" Country:
+			        .col-md-10
+			          select class="countries" multiple="multiple" id="tour_countries" name="tour_countries[]" style="width:100%"
+			           option value="Belize" Belize
+			           option value="Taiwan" Taiwan
+
+			    .col-lg-12
+			        label.col-md-2.control-label for="categories" Category (optional):
+			        .col-md-10
+				      select class="categories" multiple="multiple" id="tour_categories" name="tour_categories[]" style="width:100%"
+			           option value="Outdoor" Outdoor
+			           option value="Small Group Tours" Small Group Tours
+
+				.col-lg-12
+					label.col-md-2.control-label for="inputPriceRange" Price range (optional):
+					.col-md-10
+					  input type="text" id="inputPriceRange" name="inputPriceRange" value=""
+
+                    .col-md-10
+			          button.btn.btn-raised.btn-info id = "filter" type="submit" Take Off

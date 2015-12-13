@@ -15,13 +15,23 @@ GEM
       ice_nine (~> 0.11.0)
       thread_safe (~> 0.3, >= 0.3.1)
     builder (3.2.2)
+    chartkick (1.4.1)
+    childprocess (0.5.8)
+      ffi (~> 1.0, >= 1.0.11)
     coercible (1.0.0)
       descendants_tracker (~> 0.0.1)
     daemons (1.2.3)
+    data_magic (0.21)
+      faker (>= 1.1.2)
+      yml_reader (>= 0.4)
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
     equalizer (0.0.11)
     eventmachine (1.0.8)
+    faker (1.6.1)
+      i18n (~> 0.5)
+    ffi (1.9.10)
+    headless (2.2.0)
     httparty (0.13.7)
       json (~> 1.8)
       multi_xml (>= 0.5.2)
@@ -29,11 +39,26 @@ GEM
     ice_nine (0.11.1)
     json (1.8.3)
     minitest (5.8.2)
+    multi_json (1.11.2)
     multi_xml (0.5.5)
+    page-object (1.1.0)
+      page_navigation (>= 0.9)
+      selenium-webdriver (>= 2.44.0)
+      watir-webdriver (>= 0.6.11)
+    page_navigation (0.9)
+      data_magic (>= 0.14)
     puma (2.15.3)
     rack (1.6.4)
     rack-protection (1.5.3)
       rack
+    rack-test (0.6.3)
+      rack (>= 1.0)
+    rubyzip (1.1.7)
+    selenium-webdriver (2.48.1)
+      childprocess (~> 0.5)
+      multi_json (~> 1.0)
+      rubyzip (~> 1.0)
+      websocket (~> 1.0)
     sinatra (1.4.6)
       rack (~> 1.4)
       rack-protection (~> 1.4)
@@ -57,17 +82,30 @@ GEM
       coercible (~> 1.0)
       descendants_tracker (~> 0.0, >= 0.0.3)
       equalizer (~> 0.0, >= 0.0.9)
+    watir-webdriver (0.9.1)
+      selenium-webdriver (>= 2.46.2)
+    websocket (1.2.2)
+    yml_reader (0.6)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   activemodel
+  chartkick
+  headless
   httparty
   json
+  page-object
   puma
+  rack
+  rack-test
   sinatra
   sinatra-flash
   slim
   thin
   virtus
+  watir-webdriver
+
+BUNDLED WITH
+   1.10.6
