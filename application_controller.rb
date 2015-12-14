@@ -2,6 +2,7 @@ require 'sinatra/base'
 require 'sinatra/flash'
 require 'slim'
 require 'json'
+require 'chartkick'
 require_relative './helpers/web_helper.rb'
 
 #Main app controller
@@ -41,8 +42,8 @@ class ApplicationController < Sinatra::Base
   end
 
   post_tours = lambda do
-    tours = post_api_tour(params[:tour_countries], params[:tour_categories], settings)
-    logger.info(tours)
+    tours = post_api_tour(params[:tour_countries], params[:tour_categories], params[:inputPriceRange], settings)
+    logger.info(params[:inputPriceRange])
 
     if tours[:status] == true
       session[:results] = tours[:result]
@@ -57,7 +58,7 @@ class ApplicationController < Sinatra::Base
   # here pass in results used to generate visualization
   get_tours_visualization = lambda do
     if session[:action] == :create
-      @results = JSON.parse(session[:results])
+      #@results = JSON.parse(session[:results])
     else
       #get_api_tours(settings, params[:id])
       #if @results.code != 200
@@ -66,8 +67,23 @@ class ApplicationController < Sinatra::Base
       #end
     end
     #@country = @results['country'].upcase
-    @tours = @results['tours']
+   # @tours = @results['tours']
     #logger.info(@results)
+
+  @results = [
+  {
+    name: "Sales", 
+    data: [
+      ["2014", 1000], ["2015", 1170], ["2016", 660], ["2017", 1030]
+    ]
+  },
+  {
+    name: "Test", 
+    data: [
+      ["2014", 4000], ["2015", 1870], ["2016", 660], ["2017", 1030]
+    ]
+  }
+]
     slim :tours
   end
 

@@ -5,13 +5,14 @@ require_relative '../services/check_tour'
 
 # Tour search helper
 module WebAppHelper
-  def post_api_tour(country, category, settings)
+  def post_api_tour(country, category, price_range, settings)
     submit = TourForm.new
     submit.tour_countries = country
     submit.tour_categories = category
+    submit.inputPriceRange = price_range
 
     if submit.valid? == false
-      { status: false, message: submit.errors }
+      { status: false, message: "Required: "+ submit.error_fields }
     else
       begin
         results = CheckToursFromAPI.new(settings, submit).call
@@ -19,6 +20,7 @@ module WebAppHelper
        # logger.info(submit['tour_countries'][0].to_json)
        # logger.info(submit['tour_countries'].each_with_index.map { |value,index| "#{value}" })
         #logger.info(submit['tour_categories'].include?('Outdoor'))
+        logger.info() # test price
 
       rescue StandardError => e
         logger.info e.message
