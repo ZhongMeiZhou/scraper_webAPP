@@ -20,7 +20,7 @@ module WebAppHelper
        # logger.info(submit['tour_countries'][0].to_json)
        # logger.info(submit['tour_countries'].each_with_index.map { |value,index| "#{value}" })
         #logger.info(submit['tour_categories'].include?('Outdoor'))
-        logger.info() # test price
+        logger.info(results) # test price
 
       rescue StandardError => e
         logger.info e.message
@@ -30,7 +30,7 @@ module WebAppHelper
       if (results.code != 200)
         { status: false, message: 'The Pony Express did not deliver the goods.' }
       else
-        { status: true, result: results.to_json }
+        { status: true, result: results }
       end
     end
   end

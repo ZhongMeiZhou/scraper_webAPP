@@ -17,11 +17,11 @@ class ApplicationController < Sinatra::Base
 
   configure do
     set :session_secret, 'zmz!'
-    set :api_ver, 'api/v1'
+    set :api_ver, 'api/v2'
   end
 
   configure :production, :development, :test do
-    set :api_server, 'http://zmztours.herokuapp.com'
+    set :api_server, 'http://dynamozmz.herokuapp.com'
   end
 
   configure :production, :development do
@@ -58,7 +58,7 @@ class ApplicationController < Sinatra::Base
   # here pass in results used to generate visualization
   get_tours_visualization = lambda do
     if session[:action] == :create
-      #@results = JSON.parse(session[:results])
+      @results = JSON.parse(session[:results])
     else
       #get_api_tours(settings, params[:id])
       #if @results.code != 200
@@ -69,7 +69,7 @@ class ApplicationController < Sinatra::Base
     #@country = @results['country'].upcase
    # @tours = @results['tours']
     #logger.info(@results)
-
+=begin
   @results = [
   {
     name: "Sales", 
@@ -84,6 +84,8 @@ class ApplicationController < Sinatra::Base
     ]
   }
 ]
+=end
+    @results
     slim :tours
   end
 
