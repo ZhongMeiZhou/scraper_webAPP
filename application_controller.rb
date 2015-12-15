@@ -2,6 +2,7 @@ require 'sinatra/base'
 require 'sinatra/flash'
 require 'slim'
 require 'json'
+require 'chartkick'
 require_relative './helpers/web_helper.rb'
 
 #Main app controller
@@ -16,11 +17,11 @@ class ApplicationController < Sinatra::Base
 
   configure do
     set :session_secret, 'zmz!'
-    set :api_ver, 'api/v1'
+    set :api_ver, 'api/v2'
   end
 
   configure :production, :development, :test do
-    set :api_server, 'http://zmztours.herokuapp.com'
+    set :api_server, 'http://dynamozmz.herokuapp.com'
   end
 
   configure :production, :development do
@@ -41,8 +42,8 @@ class ApplicationController < Sinatra::Base
   end
 
   post_tours = lambda do
-    tours = post_api_tour(params[:tour_countries], params[:tour_categories], settings)
-    logger.info(tours)
+    tours = post_api_tour(params[:tour_countries], params[:tour_categories], params[:inputPriceRange], settings)
+    logger.info(params[:inputPriceRange])
 
     if tours[:status] == true
       session[:results] = tours[:result]
@@ -66,8 +67,25 @@ class ApplicationController < Sinatra::Base
       #end
     end
     #@country = @results['country'].upcase
-    @tours = @results['tours']
+   # @tours = @results['tours']
     #logger.info(@results)
+=begin
+  @results = [
+  {
+    name: "Sales", 
+    data: [
+      ["2014", 1000], ["2015", 1170], ["2016", 660], ["2017", 1030]
+    ]
+  },
+  {
+    name: "Test", 
+    data: [
+      ["2014", 4000], ["2015", 1870], ["2016", 660], ["2017", 1030]
+    ]
+  }
+]
+=end
+    @results
     slim :tours
   end
 

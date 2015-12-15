@@ -4,15 +4,14 @@ class ResultsObjects
   include Virtus.model
 
   attribute :country, String
-  attribute :count, Integer
-  attribute :tours
+  attribute :data
 end
 
 class TourCompareResults
   include Virtus.model
 
   attribute :code, Integer
-  attribute :tours, Array[ResultsObjects]
+  attribute :results, Array[ResultsObjects]
 
   def to_json
     to_hash.to_json
