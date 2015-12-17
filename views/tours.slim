@@ -1,5 +1,7 @@
 - if @results
   .container
     .jumbotron
-      == column_chart @results, colors: ["green", "#FF0000"], library: {backgroundColor: "#FFF", height: 265}
+      == column_chart @results, library: { "title":{"text":"Number of Tours by Country based on Category and Price"}, backgroundColor: "#FFF", height: 265}, id: 'tour_compare'
 
+javascript:
+ $('div#collapsefilter').addClass( "panel-collapse collapse out" )

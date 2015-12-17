@@ -6,6 +6,7 @@ require_relative '../services/check_tour'
 # Tour search helper
 module WebAppHelper
   def post_api_tour(country, category, price_range, settings)
+    logger = Logger.new(STDOUT)
     submit = TourForm.new
     submit.tour_countries = country
     submit.tour_categories = category
@@ -16,11 +17,12 @@ module WebAppHelper
     else
       begin
         results = CheckToursFromAPI.new(settings, submit).call
+        
 
        # logger.info(submit['tour_countries'][0].to_json)
        # logger.info(submit['tour_countries'].each_with_index.map { |value,index| "#{value}" })
         #logger.info(submit['tour_categories'].include?('Outdoor'))
-        logger.info(results) # test price
+       # test price
 
       rescue StandardError => e
         logger.info e.message
