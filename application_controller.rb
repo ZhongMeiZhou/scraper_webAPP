@@ -21,7 +21,7 @@ class ApplicationController < Sinatra::Base
   end
 
   configure :production, :development, :test do
-    set :api_server, 'http://dynamozmz.herokuapp.com'
+    set :api_server, 'http://dynamozmz.herokuapp.com/'
   end
 
   configure :production, :development do
@@ -43,10 +43,11 @@ class ApplicationController < Sinatra::Base
 
   post_tours = lambda do
     tours = post_api_tour(params[:tour_countries], params[:tour_categories], params[:inputPriceRange], settings)
-    logger.info(params[:inputPriceRange])
+    #logger.info(params[:inputPriceRange])
 
     if tours[:status] == true
-      session[:results] = tours[:result]
+      session[:results] = tours[:result][:data]
+      logger.info(tours[:result][:data])
       session[:action] = :create
       redirect "/tours/compare"
     else
@@ -58,7 +59,7 @@ class ApplicationController < Sinatra::Base
   # here pass in results used to generate visualization
   get_tours_visualization = lambda do
     if session[:action] == :create
-      @results = JSON.parse(session[:results])
+      @results = session[:results]
     else
       #get_api_tours(settings, params[:id])
       #if @results.code != 200

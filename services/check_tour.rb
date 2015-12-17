@@ -14,7 +14,8 @@ class CheckToursFromAPI
     result = HTTParty.post(@request_url, @options)
     tours_result = TourCompareResults.new
     tours_result.code = result.code
-    tours_result.results = result
+    tours_result.data = result
     tours_result
+   
   end
 end

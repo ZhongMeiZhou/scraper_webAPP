@@ -20,7 +20,19 @@ describe 'Tour Stories' do
         page.categories_options.size.must_be :>=, 1
       end
   	end
+
+     # also test if no data exists
+    it 'generates a visualization' do
+      visit DashboardPage do |page|
+        countries = 'Belize'
+        categories = 'Small Group Tours'
+        page.generate_visualization(countries,categories)
+      end
+    end
   end
+
+
+
 
   # future revision
   #describe 'Tour Search' do
