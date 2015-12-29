@@ -55,10 +55,9 @@ module WebAppHelper
 
   #format names to match standard understood by lonelyplanet e.g. Trinidad & Tobago will not be understood, rather trinidad-and-tobago
   def process_country_names(country)
-
+    country.map do |c|
+      c.gsub!('&', 'and')
+      c.gsub /\s+/, '-'
+    end
   end
-
-
-
-
 end
