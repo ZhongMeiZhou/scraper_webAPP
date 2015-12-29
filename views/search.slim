@@ -10,8 +10,9 @@
 					label.col-md-2.control-label for="countries" Country:
 			        .col-md-10
 			          select class="countries" multiple="multiple" id="tour_countries" name="tour_countries[]" style="width:100%"
-			           option value="Belize" Belize
-			           option value="Taiwan" Taiwan
+			          
+			           - @countries.each do |a|
+			             option value="#{a}" #{a}
 
 			    .col-lg-12
 			        label.col-md-2.control-label for="categories" Category (optional):
@@ -29,7 +30,7 @@
 			           option value="Holidays, Festivals & Seasonal" Holidays, Festivals & Seasonal
 
 				.col-lg-12
-					label.col-md-2.control-label for="inputPriceRange" Price range (optional):
+					label.col-md-2.control-label for="inputPriceRange" Price range US (optional):
 					.col-md-10
 					  input type="text" id="inputPriceRange" name="inputPriceRange" value=""
 

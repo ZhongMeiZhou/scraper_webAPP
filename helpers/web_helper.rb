@@ -17,6 +17,10 @@ module WebAppHelper
     else
       begin
         results = CheckToursFromAPI.new(settings, submit).call
+        logger.info(results)
+         logger.info(submit)
+        
+
         
 
        # logger.info(submit['tour_countries'][0].to_json)
@@ -48,4 +52,13 @@ module WebAppHelper
       halt 400, e.message
     end
   end
+
+  #format names to match standard understood by lonelyplanet e.g. Trinidad & Tobago will not be understood, rather trinidad-and-tobago
+  def process_country_names(country)
+
+  end
+
+
+
+
 end
