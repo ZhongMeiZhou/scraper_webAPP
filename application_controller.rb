@@ -42,8 +42,11 @@ class ApplicationController < Sinatra::Base
   end
 
   post_tours = lambda do
-    tours = post_api_tour(params[:tour_countries], params[:tour_categories], params[:inputPriceRange], settings)
-    #logger.info(params[:inputPriceRange])
+    #logger.info(process_country_names(params[:tour_countries]))
+
+    countries = process_country_names(params[:tour_countries])
+    tours = post_api_tour(countries, params[:tour_categories], params[:inputPriceRange], settings)
+    #logger.info(params[:tour_countries])
 
     if tours[:status] == true
       session[:results] = tours[:result][:data]
