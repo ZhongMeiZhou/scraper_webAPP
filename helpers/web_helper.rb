@@ -17,17 +17,6 @@ module WebAppHelper
     else
       begin
         results = CheckToursFromAPI.new(settings, submit).call
-        logger.info(results)
-         logger.info(submit)
-        
-
-        
-
-       # logger.info(submit['tour_countries'][0].to_json)
-       # logger.info(submit['tour_countries'].each_with_index.map { |value,index| "#{value}" })
-        #logger.info(submit['tour_categories'].include?('Outdoor'))
-       # test price
-
       rescue StandardError => e
         logger.info e.message
         halt 400, e.message

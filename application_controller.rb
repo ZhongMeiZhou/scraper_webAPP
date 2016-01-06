@@ -21,7 +21,7 @@ class ApplicationController < Sinatra::Base
   end
 
   configure :production, :development, :test do
-    set :api_server, 'http://dynamozmz.herokuapp.com/'
+    set :api_server, 'http://localhost:3000' # 'http://dynamozmz.herokuapp.com/'
   end
 
   configure :production, :development do
@@ -32,7 +32,7 @@ class ApplicationController < Sinatra::Base
   get_root = lambda do
     @dashboard = 'active'
     @listings = 'none'
-    slim :tours
+    slim :home
   end
 
   get_tour_search = lambda do
@@ -49,8 +49,8 @@ class ApplicationController < Sinatra::Base
     #logger.info(params[:tour_countries])
 
     if tours[:status] == true
-      session[:results] = tours[:result][:data]
-      logger.info(tours[:result][:data])
+      session[:results] = tours[:result]
+      
       session[:action] = :create
       redirect "/tours/compare"
     else
@@ -70,25 +70,10 @@ class ApplicationController < Sinatra::Base
         redirect "/tours"
       #end
     end
-    #@country = @results['country'].upcase
-   # @tours = @results['tours']
-    #logger.info(@results)
-=begin
-  @results = [
-  {
-    name: "Sales", 
-    data: [
-      ["2014", 1000], ["2015", 1170], ["2016", 660], ["2017", 1030]
-    ]
-  },
-  {
-    name: "Test", 
-    data: [
-      ["2014", 4000], ["2015", 1870], ["2016", 660], ["2017", 1030]
-    ]
-  }
-]
-=end
+    logger.info(@results.series)
+    logger.info(@results.drilldown)
+    logger.info(@results.categories)
+  
     @results
     slim :tours
   end
