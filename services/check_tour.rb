@@ -17,6 +17,7 @@ class CheckToursFromAPI
     tours_result.series = result['data']['series'].to_json
     tours_result.drilldown = result['data']['drilldown'].to_json
     tours_result.categories = result['data']['categories'].to_json
+    tours_result.tours = result['data']['tours']
     tours_result
   end
 end

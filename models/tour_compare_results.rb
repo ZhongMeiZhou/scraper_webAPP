@@ -14,6 +14,7 @@ class TourCompareResults
   attribute :series
   attribute :drilldown
   attribute :categories, Array[]
+  attribute :tours
 
   def to_json
     to_hash.to_json
