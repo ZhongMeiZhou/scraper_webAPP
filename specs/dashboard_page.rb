@@ -9,7 +9,7 @@ class DashboardPage
   select_list(:countries, :id => 'tour_countries')
   select_list(:categories, :id => 'tour_categories')
   text_field(:price, :id => 'inputPriceRange')
-  div(:chart, :id => 'tour_compare')
+  div(:chart, :id => 'container')
   button(:submit, id: 'submit')
 
   def generate_visualization(countries, categories)

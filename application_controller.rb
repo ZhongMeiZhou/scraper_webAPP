@@ -9,7 +9,8 @@ require_relative './helpers/web_helper.rb'
 class ApplicationController < Sinatra::Base
   include WebAppHelper
 
-  enable :sessions
+  use Rack::Session::Pool # seems to be fix to issue: Warning! Rack::Session::Cookie data size exceeds 4K. Content dropped.
+  #enable :sessions # replace this optiona bcas causing size issues enable :sessions
   register Sinatra::Flash
 
   set :views, File.expand_path('../views', __FILE__)
@@ -21,7 +22,7 @@ class ApplicationController < Sinatra::Base
   end
 
   configure :production, :development, :test do
-    set :api_server, 'http://dynamozmz.herokuapp.com/'
+    set :api_server, 'http://dynamozmz.herokuapp.com/'  #'http://localhost:3000' 
   end
 
   configure :production, :development do
@@ -32,7 +33,7 @@ class ApplicationController < Sinatra::Base
   get_root = lambda do
     @dashboard = 'active'
     @listings = 'none'
-    slim :tours
+    slim :home
   end
 
   get_tour_search = lambda do
@@ -42,15 +43,19 @@ class ApplicationController < Sinatra::Base
   end
 
   post_tours = lambda do
-    #logger.info(process_country_names(params[:tour_countries]))
+    logger.info(params[:categories])
+    categories = params[:tour_categories]
+
+    if categories.nil?
+     categories = ['Small Group Tours', 'Adventure', 'Sightseeing Tours', 'Health & Wellness', 'History & Culture']
+    end
 
     countries = process_country_names(params[:tour_countries])
-    tours = post_api_tour(countries, params[:tour_categories], params[:inputPriceRange], settings)
-    #logger.info(params[:tour_countries])
-
+    tours = post_api_tour(countries, categories, params[:inputPriceRange], settings)
+    
     if tours[:status] == true
-      session[:results] = tours[:result][:data]
-      logger.info(tours[:result][:data])
+      session[:results] = tours[:result]
+      
       session[:action] = :create
       redirect "/tours/compare"
     else
@@ -70,25 +75,12 @@ class ApplicationController < Sinatra::Base
         redirect "/tours"
       #end
     end
-    #@country = @results['country'].upcase
-   # @tours = @results['tours']
-    #logger.info(@results)
-=begin
-  @results = [
-  {
-    name: "Sales", 
-    data: [
-      ["2014", 1000], ["2015", 1170], ["2016", 660], ["2017", 1030]
-    ]
-  },
-  {
-    name: "Test", 
-    data: [
-      ["2014", 4000], ["2015", 1870], ["2016", 660], ["2017", 1030]
-    ]
-  }
-]
-=end
+   # logger.info(@results.series)
+    #logger.info(@results.drilldown)
+    #logger.info(@results.categories)
+    #logger.info(@results.tours)
+    logger.info(@results.categories[0][1..-1].gsub(/"|\[|\]|/, '').gsub(/\\u([a-f0-9]{4,5})/i){ [$1.hex].pack('U') }.split(',').map { |e| e })
+  
     @results
     slim :tours
   end

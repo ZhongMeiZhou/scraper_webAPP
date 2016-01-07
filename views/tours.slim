@@ -1,7 +1,83 @@
 - if @results
   .container
     .jumbotron
-      == column_chart @results, library: { "title":{"text":"Number of Tours by Country based on Category and Price"}, backgroundColor: "#FFF", height: 265}, id: 'tour_compare'
+      <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 
+div class="container" id="tours"
+  h2 class="alert alert-info" style="text-align:center" <b>#{@results.tours.count} tours found </b>
+  div class="row"
+   - @results.countries.each do |cnt|
+    h2 style="clear: both;text-align:center;color:#4CAF50;" #{{cnt}}
+    - for i in @results.categories[0][1..-1].gsub(/"|\[|\]|/, '').gsub(/\\u([a-f0-9]{4,5})/i){ [$1.hex].pack('U') }.split(',')
+      p style="clear: both;text-align:center;font-weight:bold;" #{i}
+      - for tour in @results.tours
+       - if tour['country'].eql? cnt
+        - if tour['category'].eql? i
+          div class="col-sm-6 col-md-4"
+           a class="thumbnail" href="#{tour['url']}" target="_blank"
+             img src="#{tour['url']}" class="img-rounded" style="height: 200px; width: 100%; display: block;"
+              div class="caption"
+              h3 
+              p class="alert alert-success" style="height:80px;" #{tour['title']} <b>$#{tour['price']}</b>
+        
 javascript:
- $('div#collapsefilter').addClass( "panel-collapse collapse out" )
+      $(function () {
+        var chart = new Highcharts.Chart({
+            chart: {
+                type: 'column',
+                renderTo: 'container',
+                  events: {
+                    drillup: function (e) {
+                    chart.xAxis[0].setCategories(#{{@results.categories}})
+                    chart.yAxis[0].setTitle({'text':'# of tours'})
+                    chart.setTitle({ text: 'Number of Tours by Country and Category'})
+                    
+                }
+            } 
+            },
+            title: {
+                text: 'Number of Tours by Country and Category'
+            },
+            subtitle: {
+                text: 'Source: lonelyplanet.com'
+            },
+            xAxis: {
+            categories: #{{@results.categories}}
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: '# of tours'
+                }
+            },
+            
+            plotOptions: {
+                column: {
+                        cursor: 'pointer',
+                        point: {
+                            events: {
+                                click: function () {
+                                var drilldown = this.drilldown
+                                  chart.xAxis[0].setCategories(true)
+                                  chart.yAxis[0].setTitle({'text':'Tour price ($)'})
+                                  chart.setTitle({ text: 'Breakdown of Tours based on Price by Country and Category'})
+                                }
+                            }
+                        }
+            },
+            series: {
+                borderWidth: 0,
+                dataLabels: {
+                    enabled: true,
+                }
+            }
+            },
+            series: #{{@results.series}},
+
+            drilldown:{
+                series: #{{@results.drilldown}}
+               }
+             });
+        });
+
+

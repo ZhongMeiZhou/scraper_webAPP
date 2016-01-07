@@ -12,10 +12,13 @@ class CheckToursFromAPI
 
   def call
     result = HTTParty.post(@request_url, @options)
-    tours_result = TourCompareResults.new
+    tours_result = TourCompareResults.new(:categories => [result['data']['categories'].to_json])
     tours_result.code = result.code
-    tours_result.data = result
+    tours_result.series = result['data']['series'].to_json
+    tours_result.drilldown = result['data']['drilldown'].to_json
+   # tours_result.categories = result['data']['categories']
+    tours_result.countries = result['data']['countries']
+    tours_result.tours = result['data']['tours']
     tours_result
-   
   end
 end
