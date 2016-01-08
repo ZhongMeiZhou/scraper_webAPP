@@ -22,7 +22,7 @@ class ApplicationController < Sinatra::Base
   end
 
   configure :production, :development, :test do
-    set :api_server, 'http://dynamozmz.herokuapp.com/'  #'http://localhost:3000' 
+    set :api_server, 'http://localhost:3000' # 'http://dynamozmz.herokuapp.com/'
   end
 
   configure :production, :development do
@@ -75,11 +75,12 @@ class ApplicationController < Sinatra::Base
         redirect "/tours"
       #end
     end
+    # [0][1..-1].gsub(/"|\[|\]|/, '').gsub(/\\u([a-f0-9]{4,5})/i){ [$1.hex].pack('U') }.split(',')
    # logger.info(@results.series)
     #logger.info(@results.drilldown)
     #logger.info(@results.categories)
     #logger.info(@results.tours)
-    logger.info(@results.categories[0][1..-1].gsub(/"|\[|\]|/, '').gsub(/\\u([a-f0-9]{4,5})/i){ [$1.hex].pack('U') }.split(',').map { |e| e })
+    #logger.info(@results.categories[0][1..-1].gsub(/"|\[|\]|/, '').gsub(/\\u([a-f0-9]{4,5})/i){ [$1.hex].pack('U') }.split(',').map { |e| e })
   
     @results
     slim :tours
