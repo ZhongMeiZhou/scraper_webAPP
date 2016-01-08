@@ -1,11 +1,6 @@
 require 'virtus'
 require 'json'
 
-class Json < Virtus::Attribute
-  def coerce(value)
-    value.is_a?(::Hash) ? value : JSON.parse(value)
-  end
-end
 
 class TourCompareResults
   include Virtus.model
