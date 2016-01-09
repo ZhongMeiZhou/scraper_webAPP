@@ -2,6 +2,7 @@ require 'httparty'
 require 'json'
 require_relative '../forms/tour_form'
 require_relative '../services/check_tour'
+require_relative '../services/send_report'
 
 # Tour search helper
 module WebAppHelper
@@ -28,6 +29,21 @@ module WebAppHelper
         { status: true, result: results }
       end
     end
+  end
+
+  def post_api_report(email,url,html,settings)
+    begin
+        results = SendReport.new(settings, email,url,html).call
+      rescue StandardError => e
+        logger.info e.message
+        halt 400, e.message
+      end
+
+      if (results.code != 200)
+        { status: false, message: 'The Pony Express did not deliver the goods.' }
+      else
+        { status: true, result: results }
+      end
   end
 
   def get_api_tours(settings, id)

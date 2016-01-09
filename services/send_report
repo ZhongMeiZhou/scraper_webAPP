@@ -1,0 +1,17 @@
+require 'json'
+class SendReport
+  def initialize(api, email, url, html)
+    @request_url = "#{api.api_server}/#{api.api_ver}/send_email"
+    @options =  { body: {
+                    email: email,
+                    url: url,
+                    html: html
+                  }.to_json,
+                  headers: { 'Content-Type' => 'application/json' }
+                }
+  end
+
+  def call
+    result = HTTParty.post(@request_url, @options)
+  end
+end
