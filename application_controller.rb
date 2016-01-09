@@ -64,6 +64,9 @@ class ApplicationController < Sinatra::Base
     end
   end
 
+  post_email_report = lambda do
+  end
+
   # here pass in results used to generate visualization
   get_tours_visualization = lambda do
     if session[:action] == :create
@@ -90,5 +93,6 @@ class ApplicationController < Sinatra::Base
   get '/', &get_root
   get "/tours", &get_tour_search
   post "/tours", &post_tours
+  post "/emailReport", &post_email_report
   get '/tours/compare', &get_tours_visualization
 end
