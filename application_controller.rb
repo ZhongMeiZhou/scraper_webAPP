@@ -86,9 +86,14 @@ class ApplicationController < Sinatra::Base
     slim :tours
   end
 
+  post_report = lambda do
+    puts params
+  end
+
   # GUI Routes
   get '/', &get_root
   get "/tours", &get_tour_search
   post "/tours", &post_tours
+  post "/report", &post_report
   get '/tours/compare', &get_tours_visualization
 end
