@@ -22,7 +22,7 @@ class ApplicationController < Sinatra::Base
   end
 
   configure :production, :development, :test do
-    set :api_server, 'http://dynamozmz.herokuapp.com/' #'http://localhost:3000' # 'http://dynamozmz.herokuapp.com/'
+    set :api_server, 'http://localhost:3000' # 'http://dynamozmz.herokuapp.com/'
   end
 
   configure :production, :development do
@@ -43,6 +43,9 @@ class ApplicationController < Sinatra::Base
   end
 
   post_tours = lambda do
+    puts '------Post request to get tours ------'
+    puts "params : #{params}"
+    session[:searchParams] = params
     #logger.info(params[:categories])
     categories = params[:tour_categories]
 
@@ -87,10 +90,10 @@ class ApplicationController < Sinatra::Base
   end
 
   post_report = lambda do
-    puts params
+    #puts params
     
-    report = post_api_report(params[:email], params[:url], params[:html], settings)
-  
+    report = post_api_report(params[:email], session[:results], settings)
+
     
     if report[:status] == true
       return {message: "Processing your request. You can continue"}.to_json

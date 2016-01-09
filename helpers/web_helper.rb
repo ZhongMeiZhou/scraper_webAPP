@@ -31,9 +31,9 @@ module WebAppHelper
     end
   end
 
-  def post_api_report(email,url,html,settings)
+  def post_api_report(email,result,settings)
     begin
-        results = SendReport.new(settings, email,url,html).call
+        results = SendReport.new(settings, email,result).call
       rescue StandardError => e
         logger.info e.message
         halt 400, e.message

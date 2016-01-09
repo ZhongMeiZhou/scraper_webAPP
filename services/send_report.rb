@@ -1,11 +1,10 @@
 require 'json'
 class SendReport
-  def initialize(api, email, url, html)
+  def initialize(api, email, result)
     @request_url = "#{api.api_server}/#{api.api_ver}/send_email"
     @options =  { body: {
                     email: email,
-                    url: url,
-                    html: html
+                    result: result
                   }.to_json,
                   headers: { 'Content-Type' => 'application/json' }
                 }

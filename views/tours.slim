@@ -86,25 +86,28 @@ javascript:
         function setHTML(){
           var markup = document.documentElement.innerHTML;
           var email = $('#txtSendReportEmail').val();
-          var host = window.location.protocol +"//"+ window.location.host+"/";
+          var host = window.location.protocol +"//"+ window.location.host;
           var path = window.location.pathname;
           console.log(markup);
           console.log(email);
           console.log(host);
+          console.log(host + path);
           $('#txtSendReportHtml').val(markup);
           //$('#frmSendReport').submit();
 
           $.ajax({
-              url : host + "report",
+              url : host + "/report",
               type: "POST",
               data : {
                 email: email,
                 html: markup,
+                css: '',
                 url: host + path
               },
               success: function(data, textStatus, jqXHR)
               {
                   console.log("Excelent");
+                  console.log(data);
               },
               error: function (jqXHR, textStatus, errorThrown)
               {
