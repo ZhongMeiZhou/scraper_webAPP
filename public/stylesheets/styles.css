@@ -175,3 +175,11 @@ div.flash {
   outline:none;
   text-align: center;
 }
+
+#txtSendReport{
+  height: 40px;
+    margin: 10px;
+    border-radius: 0.5em;
+    box-shadow: black 0 0 10px;
+    border: none;
+}
