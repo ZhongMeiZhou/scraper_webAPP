@@ -93,8 +93,6 @@ class ApplicationController < Sinatra::Base
     #puts params
     
     report = post_api_report(params[:email], session[:results], settings)
-
-    
     if report[:status] == true
       return {message: "Processing your request. You can continue"}.to_json
     else
