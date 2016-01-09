@@ -43,6 +43,9 @@ class ApplicationController < Sinatra::Base
   end
 
   post_tours = lambda do
+    puts '------Post request to get tours ------'
+    puts "params : #{params}"
+    session[:searchParams] = params
     #logger.info(params[:categories])
     categories = params[:tour_categories]
 
@@ -76,7 +79,7 @@ class ApplicationController < Sinatra::Base
       #end
     end
     # [0][1..-1].gsub(/"|\[|\]|/, '').gsub(/\\u([a-f0-9]{4,5})/i){ [$1.hex].pack('U') }.split(',')
-   # logger.info(@results.series)
+    # logger.info(@results.series)
     #logger.info(@results.drilldown)
     #logger.info(@results.categories)
     #logger.info(@results.tours)
@@ -86,9 +89,21 @@ class ApplicationController < Sinatra::Base
     slim :tours
   end
 
+  post_report = lambda do
+    #puts params
+    
+    report = post_api_report(params[:email], session[:results], settings)
+    if report[:status] == true
+      return {message: "Processing your request. You can continue"}.to_json
+    else
+      return {message: "Error Processing your request. Please try again"}.to_json
+    end
+  end
+
   # GUI Routes
   get '/', &get_root
   get "/tours", &get_tour_search
   post "/tours", &post_tours
+  post "/report", &post_report
   get '/tours/compare', &get_tours_visualization
 end

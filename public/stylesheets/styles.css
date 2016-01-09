@@ -175,3 +175,19 @@ div.flash {
   outline:none;
   text-align: center;
 }
+
+#txtSendReportEmail{
+  height: 40px;
+    margin: 10px;
+    border-radius: 0.5em;
+    box-shadow: black 0 0 10px;
+    border: none;
+    font-size: large;
+}
+
+#container-sendReport{
+    margin-bottom: 20px;
+    padding-bottom: 5px;
+    background-color: lightblue;
+    text-align: center;
+}
