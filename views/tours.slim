@@ -105,6 +105,8 @@ javascript:
               {
                   console.log("Excelent");
                   console.log(data);
+                  // Display a success toast, with a title
+                  toastr.success('We are processing your request. You can continue search!', 'Team TraViz Says')
               },
               error: function (jqXHR, textStatus, errorThrown)
               {
