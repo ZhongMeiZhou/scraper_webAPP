@@ -182,4 +182,11 @@ div.flash {
     border-radius: 0.5em;
     box-shadow: black 0 0 10px;
     border: none;
+    font-size: large;
+}
+
+#container-sendReport{
+    margin-bottom: 20px;
+    padding-bottom: 5px;
+    background-color: lightblue;
 }
