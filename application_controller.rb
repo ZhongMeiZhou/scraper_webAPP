@@ -64,9 +64,6 @@ class ApplicationController < Sinatra::Base
     end
   end
 
-  post_email_report = lambda do
-  end
-
   # here pass in results used to generate visualization
   get_tours_visualization = lambda do
     if session[:action] == :create
@@ -79,7 +76,7 @@ class ApplicationController < Sinatra::Base
       #end
     end
     # [0][1..-1].gsub(/"|\[|\]|/, '').gsub(/\\u([a-f0-9]{4,5})/i){ [$1.hex].pack('U') }.split(',')
-   # logger.info(@results.series)
+    # logger.info(@results.series)
     #logger.info(@results.drilldown)
     #logger.info(@results.categories)
     #logger.info(@results.tours)
@@ -93,6 +90,5 @@ class ApplicationController < Sinatra::Base
   get '/', &get_root
   get "/tours", &get_tour_search
   post "/tours", &post_tours
-  post "/emailReport", &post_email_report
   get '/tours/compare', &get_tours_visualization
 end
