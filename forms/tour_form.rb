@@ -7,8 +7,8 @@ class TourForm
   include ActiveModel::Serializers::JSON
   include ActiveModel::Validations
 
-  attribute :tour_countries, String
-  attribute :tour_categories, String
+  attribute :tour_countries, Array[]
+  attribute :tour_categories, Array[]
   attribute :inputPriceRange, String
 
   validates :tour_countries, presence: true

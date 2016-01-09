@@ -26,7 +26,7 @@ describe 'Tour Stories' do
       visit DashboardPage do |page|
         countries = 'Belize'
         categories = 'Small Group Tours'
-        page.generate_visualization(countries,categories)
+        page.generate_results(countries,categories)
       end
     end
   end
