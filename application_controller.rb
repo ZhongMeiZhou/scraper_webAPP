@@ -22,7 +22,7 @@ class ApplicationController < Sinatra::Base
   end
 
   configure :production, :development, :test do
-    set :api_server, 'http://localhost:3000' # 'http://dynamozmz.herokuapp.com/'
+    set :api_server, 'http://dynamozmz.herokuapp.com/' #'http://localhost:3000' # 'http://dynamozmz.herokuapp.com/'
   end
 
   configure :production, :development do
@@ -43,15 +43,15 @@ class ApplicationController < Sinatra::Base
   end
 
   post_tours = lambda do
-    logger.info(params[:categories])
+    #logger.info(params[:categories])
     categories = params[:tour_categories]
 
     if categories.nil?
      categories = ['Small Group Tours', 'Adventure', 'Sightseeing Tours', 'Health & Wellness', 'History & Culture']
     end
-
-    countries = process_country_names(params[:tour_countries])
-    tours = post_api_tour(countries, categories, params[:inputPriceRange], settings)
+    #params[:tour_countries].each{|t| t.gsub!('&', 'and').gsub(/\s+/, '-')}
+    tours = post_api_tour(params[:tour_countries], categories, params[:inputPriceRange], settings)
+  
     
     if tours[:status] == true
       session[:results] = tours[:result]
