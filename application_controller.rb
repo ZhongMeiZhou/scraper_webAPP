@@ -33,25 +33,22 @@ class ApplicationController < Sinatra::Base
   end
 
 
-  configure :production, :development do
+  configure :production do
     set :api_server, 'http://dynamozmz.herokuapp.com/' 
-    #'http://localhost:3000' # 'http://dynamozmz.herokuapp.com/'
+  end
+
+  configure :development, :test do
+    set :api_server, 'http://dynamozmz.herokuapp.com'
+    #set :api_server, 'http://localhost:3000'
   end
 
   configure :test do
    
     #use Rack::Session::Pool
     set :domain, 'localhost'
-    set :api_server, 'http://dynamozmz.herokuapp.com/' 
-  end
-
-  configure :development, :test do
-    set :api_server, 'http://dynamozmz.herokuapp.com'
-    #set :api_server, 'http://localhost:3000' #'http://localhost:3000' # 'http://dynamozmz.herokuapp.com/'
   end
 
   configure :production, :development do
-    set :api_server, 'http://dynamozmz.herokuapp.com'
     enable :logging
     set :domain, 'lptours.herokuapp.com'
     #use Rack::Session::Pool, :domain => 'lptours.herokuapp.com', :expire_after => 60 * 60 * 24 * 365
@@ -90,7 +87,7 @@ class ApplicationController < Sinatra::Base
 
     if tours[:status] == true
       session[:results] = tours[:result]
-      global_results = tours[:result]
+      @@global_results = tours[:result]
 
       session[:action] = :create
       redirect "/tours/compare"
@@ -127,12 +124,14 @@ class ApplicationController < Sinatra::Base
     slim :tours
   end
 
-  global_results = {}
+  @@global_results = {}
 
   post_report = lambda do
     #puts params
-    if !global_results.nil?
-      report = post_api_report(params[:email], global_results, settings)
+    if !@@global_results.nil?
+      puts 'Values stored'
+      puts @@global_results.to_json
+      report = post_api_report(params[:email], @@global_results, settings)
 
       # Run worker
       if report[:status] == true
