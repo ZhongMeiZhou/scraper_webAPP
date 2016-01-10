@@ -19,6 +19,10 @@ class CheckToursFromAPI
     tours_result.filtered_categories = result['data']['filtered_categories']
     tours_result.all_categories = result['data']['all_categories']
     tours_result.tours = result['data']['tours']
+    
+    logger = Logger.new(STDOUT)
+    logger.info("CHECK RETURNED RESULTS FROM API:")
+    logger.info(tours_result)
     tours_result
   end
 end
