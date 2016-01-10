@@ -37,7 +37,7 @@ class ApplicationController < Sinatra::Base
 
   configure :production, :development do
     enable :logging
-    set :domain, 'herokuapp.com'
+    set :domain, 'lptours.herokuapp.com'
   end
 
   # GUI route definitions
