@@ -35,22 +35,23 @@ class ApplicationController < Sinatra::Base
 
   configure :production do
     set :api_server, 'http://dynamozmz.herokuapp.com/' 
+    set :domain, 'lptours.herokuapp.com'
   end
 
   configure :development, :test do
-    set :api_server, 'http://dynamozmz.herokuapp.com'
-    #set :api_server, 'http://localhost:3000'
+    #set :api_server, 'http://dynamozmz.herokuapp.com'
+    #set :domain, 'lptours.herokuapp.com'
+    set :api_server, 'http://localhost:3000'
+    set :domain, 'localhost'
   end
 
   configure :test do
-   
     #use Rack::Session::Pool
     set :domain, 'localhost'
   end
 
   configure :production, :development do
     enable :logging
-    set :domain, 'lptours.herokuapp.com'
     #use Rack::Session::Pool, :domain => 'lptours.herokuapp.com', :expire_after => 60 * 60 * 24 * 365
   end
 
