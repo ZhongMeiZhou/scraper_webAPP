@@ -9,8 +9,8 @@ require_relative './helpers/web_helper.rb'
 class ApplicationController < Sinatra::Base
   include WebAppHelper
 
-  #use Rack::Session::Pool # seems to be fix to issue: Warning! Rack::Session::Cookie data size exceeds 4K. Content dropped.
-  enable :sessions # replace this optiona bcas causing size issues enable :sessions
+  use Rack::Session::Pool # seems to be fix to issue: Warning! Rack::Session::Cookie data size exceeds 4K. Content dropped.
+  #enable :sessions # replace this optiona bcas causing size issues enable :sessions
   register Sinatra::Flash
 
   set :views, File.expand_path('../views', __FILE__)
