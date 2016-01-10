@@ -108,6 +108,7 @@ class ApplicationController < Sinatra::Base
       end
     else
       return {message: "Error Processing your request. Please try again"}.to_json
+    end
     
   end
 
