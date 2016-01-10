@@ -131,8 +131,8 @@ class ApplicationController < Sinatra::Base
 
   post_report = lambda do
     #puts params
-    if session[:action] == :create
-      report = post_api_report(params[:email], session[:results], settings)
+    if !global_results.nil?
+      report = post_api_report(params[:email], global_results, settings)
 
       # Run worker
       if report[:status] == true
