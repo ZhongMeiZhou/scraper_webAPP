@@ -90,6 +90,7 @@ class ApplicationController < Sinatra::Base
 
     if tours[:status] == true
       session[:results] = tours[:result]
+      global_results = tours[:result]
 
       session[:action] = :create
       redirect "/tours/compare"
@@ -125,6 +126,8 @@ class ApplicationController < Sinatra::Base
     @results
     slim :tours
   end
+
+  global_results = {}
 
   post_report = lambda do
     #puts params
