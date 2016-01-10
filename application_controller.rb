@@ -9,7 +9,7 @@ require_relative './helpers/web_helper.rb'
 class ApplicationController < Sinatra::Base
   include WebAppHelper
 
-  use Rack::Session::Pool # seems to be fix to issue: Warning! Rack::Session::Cookie data size exceeds 4K. Content dropped.
+  use Rack::Session::Cookie # seems to be fix to issue: Warning! Rack::Session::Cookie data size exceeds 4K. Content dropped.
   #enable :sessions # replace this optiona bcas causing size issues enable :sessions
   register Sinatra::Flash
 
@@ -75,7 +75,7 @@ class ApplicationController < Sinatra::Base
   get_tours_visualization = lambda do
     logger.info("CHECK SESSION ACTION:")
     logger.info(session[:action])
-    
+
     if session[:action] == :create
       @results = session[:results]
       logger.info("CHECK RESULTS:")
