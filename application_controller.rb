@@ -52,13 +52,17 @@ class ApplicationController < Sinatra::Base
     if categories.nil?
      categories = ['Small Group Tours', 'Adventure', 'Sightseeing Tours', 'Health & Wellness', 'History & Culture']
     end
-    #params[:tour_countries].each{|t| t.gsub!('&', 'and').gsub(/\s+/, '-')}
+    params[:tour_countries].each do |t|
+      t.gsub!('&', 'and')#.gsub(/\s+/, '-')
+      t.gsub!(' ', '-')
+    end
+    puts params[:tour_countries].each{|t| t }
     tours = post_api_tour(params[:tour_countries], categories, params[:inputPriceRange], settings)
-  
-    
+
+
     if tours[:status] == true
       session[:results] = tours[:result]
-      
+
       session[:action] = :create
       redirect "/tours/compare"
     else
@@ -84,14 +88,14 @@ class ApplicationController < Sinatra::Base
     #logger.info(@results.categories)
     #logger.info(@results.tours)
     #logger.info(@results.categories[0][1..-1].gsub(/"|\[|\]|/, '').gsub(/\\u([a-f0-9]{4,5})/i){ [$1.hex].pack('U') }.split(',').map { |e| e })
-  
+
     @results
     slim :tours
   end
 
   post_report = lambda do
     #puts params
-    
+
     report = post_api_report(params[:email], session[:results], settings)
     if report[:status] == true
       return {message: "Processing your request. You can continue"}.to_json
