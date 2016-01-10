@@ -97,15 +97,19 @@ class ApplicationController < Sinatra::Base
 
   post_report = lambda do
     #puts params
+    if session[:action] == :create
+      report = post_api_report(params[:email], session[:results], settings)
 
-    report = post_api_report(params[:email], session[:results], settings)
-
-    # Run worker
-    if report[:status] == true
-      return {message: "Processing your request. You can continue"}.to_json
+      # Run worker
+      if report[:status] == true
+        return {message: "Processing your request. You can continue"}.to_json
+      else
+        return {message: "Error Processing your request. Please try again"}.to_json
+      end
     else
       return {message: "Error Processing your request. Please try again"}.to_json
     end
+    
   end
 
   # GUI Routes
