@@ -33,25 +33,27 @@ class ApplicationController < Sinatra::Base
   end
 
 
-  configure :production do
+  configure :production, :development do
     set :api_server, 'http://dynamozmz.herokuapp.com/' 
-    set :domain, 'lptours.herokuapp.com'
-  end
-
-  configure :development, :test do
-    #set :api_server, 'http://dynamozmz.herokuapp.com'
-    #set :domain, 'lptours.herokuapp.com'
-    set :api_server, 'http://localhost:3000'
-    set :domain, 'localhost'
+    #'http://localhost:3000' # 'http://dynamozmz.herokuapp.com/'
   end
 
   configure :test do
+   
     #use Rack::Session::Pool
     set :domain, 'localhost'
+    set :api_server, 'http://dynamozmz.herokuapp.com/' 
+  end
+
+  configure :development, :test do
+    set :api_server, 'http://dynamozmz.herokuapp.com'
+    #set :api_server, 'http://localhost:3000' #'http://localhost:3000' # 'http://dynamozmz.herokuapp.com/'
   end
 
   configure :production, :development do
+    set :api_server, 'http://dynamozmz.herokuapp.com'
     enable :logging
+    set :domain, 'lptours.herokuapp.com'
     #use Rack::Session::Pool, :domain => 'lptours.herokuapp.com', :expire_after => 60 * 60 * 24 * 365
   end
 
@@ -153,3 +155,4 @@ class ApplicationController < Sinatra::Base
   post "/report", &post_report
   get '/tours/compare', &get_tours_visualization
 end
+
