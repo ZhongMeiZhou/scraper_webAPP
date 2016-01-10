@@ -9,15 +9,19 @@ require_relative './helpers/web_helper.rb'
 class ApplicationController < Sinatra::Base
   include WebAppHelper
 
-  use Rack::Session::Cookie # seems to be fix to issue: Warning! Rack::Session::Cookie data size exceeds 4K. Content dropped.
+
+  use Rack::Session::Pool # seems to be fix to issue: Warning! Rack::Session::Cookie data size exceeds 4K. Content dropped.
   #enable :sessions # replace this optiona bcas causing size issues enable :sessions
   register Sinatra::Flash
+  #enable :sessions
+  #use Rack::Session::Cookie, :secret => 'secret'#, :expire_after => 3600 * 24 # In seconds
 
   set :views, File.expand_path('../views', __FILE__)
   set :public_folder, File.expand_path('../public', __FILE__)
 
   configure do
-    set :session_secret, 'zmz!'
+    #enable :sessions
+    #set :session_secret, ENV['SESSION_SECRET'] ||= 'super secret'
     set :api_ver, 'api/v2'
   end
 
