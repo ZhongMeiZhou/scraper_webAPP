@@ -21,7 +21,7 @@ class ApplicationController < Sinatra::Base
     set :api_ver, 'api/v2'
   end
 
-  configure :production, :development, :test do
+  configure :development, :test do
     set :api_server, 'http://dynamozmz.herokuapp.com'
     #set :api_server, 'http://localhost:3000' #'http://localhost:3000' # 'http://dynamozmz.herokuapp.com/'
   end
