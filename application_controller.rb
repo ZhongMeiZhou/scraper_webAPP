@@ -73,8 +73,13 @@ class ApplicationController < Sinatra::Base
 
   # here pass in results used to generate visualization
   get_tours_visualization = lambda do
+    logger.info("CHECK SESSION ACTION:")
+    logger.info(session[:action])
+    
     if session[:action] == :create
       @results = session[:results]
+      logger.info("CHECK RESULTS:")
+      logger.info(@results)
     else
       #get_api_tours(settings, params[:id])
       #if @results.code != 200
