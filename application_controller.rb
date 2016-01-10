@@ -10,7 +10,7 @@ class ApplicationController < Sinatra::Base
   include WebAppHelper
 
 
-  use Rack::Session::Pool, :domain => 'herokuapp.com', :expire_after => 60 * 60 * 24 * 365
+  use Rack::Session::Pool, :expire_after => 60 * 60 * 24 * 365
   # seems to be fix to issue: Warning! Rack::Session::Cookie data size exceeds 4K. Content dropped.
   #enable :sessions # replace this optiona bcas causing size issues enable :sessions
   register Sinatra::Flash
@@ -27,11 +27,17 @@ class ApplicationController < Sinatra::Base
   end
 
   configure :production, :development, :test do
-    set :api_server, 'http://dynamozmz.herokuapp.com/' #'http://localhost:3000' # 'http://dynamozmz.herokuapp.com/'
+    set :api_server, 'http://dynamozmz.herokuapp.com/' 
+    #'http://localhost:3000' # 'http://dynamozmz.herokuapp.com/'
+  end
+
+  configure :test do
+    set :domain, 'localhost'
   end
 
   configure :production, :development do
     enable :logging
+    set :domain, 'herokuapp.com'
   end
 
   # GUI route definitions
