@@ -14,6 +14,7 @@ class ApplicationController < Sinatra::Base
   # seems to be fix to issue: Warning! Rack::Session::Cookie data size exceeds 4K. Content dropped.
   #enable :sessions # replace this optiona bcas causing size issues enable :sessions
   register Sinatra::Flash
+  
   #enable :sessions
   #use Rack::Session::Cookie, :secret => 'secret'#, :expire_after => 3600 * 24 # In seconds
 
@@ -22,12 +23,15 @@ class ApplicationController < Sinatra::Base
 
   configure do
     #enable :sessions
-    #disable :sessions
+    disable :sessions
+   # disable :flash
     use Rack::Session::Pool
+   # use Rack::Flash
     #use Rack::Flash
     #set :session_secret, ENV['SESSION_SECRET'] ||= 'super secret'
     set :api_ver, 'api/v2'
   end
+
 
   configure :production, :development do
     set :api_server, 'http://dynamozmz.herokuapp.com/' 
@@ -35,13 +39,19 @@ class ApplicationController < Sinatra::Base
   end
 
   configure :test do
-    disable :sessions
+   
     #use Rack::Session::Pool
     set :domain, 'localhost'
     set :api_server, 'http://dynamozmz.herokuapp.com/' 
   end
 
+  configure :development, :test do
+    set :api_server, 'http://dynamozmz.herokuapp.com'
+    #set :api_server, 'http://localhost:3000' #'http://localhost:3000' # 'http://dynamozmz.herokuapp.com/'
+  end
+
   configure :production, :development do
+    set :api_server, 'http://dynamozmz.herokuapp.com'
     enable :logging
     set :domain, 'lptours.herokuapp.com'
     #use Rack::Session::Pool, :domain => 'lptours.herokuapp.com', :expire_after => 60 * 60 * 24 * 365
@@ -118,13 +128,19 @@ class ApplicationController < Sinatra::Base
 
   post_report = lambda do
     #puts params
+    if session[:action] == :create
+      report = post_api_report(params[:email], session[:results], settings)
 
-    report = post_api_report(params[:email], session[:results], settings)
-    if report[:status] == true
-      return {message: "Processing your request. You can continue"}.to_json
+      # Run worker
+      if report[:status] == true
+        return {message: "Processing your request. You can continue"}.to_json
+      else
+        return {message: "Error Processing your request. Please try again"}.to_json
+      end
     else
       return {message: "Error Processing your request. Please try again"}.to_json
     end
+    
   end
 
   # GUI Routes
