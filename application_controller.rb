@@ -10,7 +10,7 @@ class ApplicationController < Sinatra::Base
   include WebAppHelper
 
 
-  use Rack::Session::Pool, :domain => 'lptours.herokuapp.com', :expire_after => 60 * 60 * 24 * 365
+  use Rack::Session::Pool, :domain => 'herokuapp.com', :expire_after => 60 * 60 * 24 * 365
   # seems to be fix to issue: Warning! Rack::Session::Cookie data size exceeds 4K. Content dropped.
   #enable :sessions # replace this optiona bcas causing size issues enable :sessions
   register Sinatra::Flash
