@@ -23,24 +23,28 @@ class ApplicationController < Sinatra::Base
   configure do
     #enable :sessions
     #disable :sessions
-    
+    use Rack::Session::Pool
     #use Rack::Flash
     #set :session_secret, ENV['SESSION_SECRET'] ||= 'super secret'
     set :api_ver, 'api/v2'
   end
 
-  configure :production, :development, :test do
+  configure :production, :development do
     set :api_server, 'http://dynamozmz.herokuapp.com/' 
     #'http://localhost:3000' # 'http://dynamozmz.herokuapp.com/'
   end
 
   configure :test do
-    use Rack::Session::Pool, :domain => 'localhost', :expire_after => 60 * 60 * 24 * 365
+    disable :sessions
+    #use Rack::Session::Pool
+    set :domain, 'localhost'
+    set :api_server, 'http://dynamozmz.herokuapp.com/' 
   end
 
   configure :production, :development do
     enable :logging
-    use Rack::Session::Pool, :domain => 'lptours.herokuapp.com', :expire_after => 60 * 60 * 24 * 365
+    set :domain, 'lptours.herokuapp.com'
+    #use Rack::Session::Pool, :domain => 'lptours.herokuapp.com', :expire_after => 60 * 60 * 24 * 365
   end
 
   # GUI route definitions

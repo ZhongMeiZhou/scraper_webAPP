@@ -22,6 +22,7 @@ describe 'Tour Stories' do
   	end
 
      # also test if no data exists
+     
     it 'generates a visualization' do
       visit DashboardPage do |page|
         countries = 'Belize'
