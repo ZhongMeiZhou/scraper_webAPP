@@ -18,8 +18,8 @@ module WebAppHelper
     else
       begin
         results = CheckToursFromAPI.new(settings, submit).call
-        logger.info("IN POST API TOUR:")
-        logger.info(results)
+        #logger.info("IN POST API TOUR:")
+        #logger.info(results)
       rescue StandardError => e
         logger.info e.message
         halt 400, e.message
