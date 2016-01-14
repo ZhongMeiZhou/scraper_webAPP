@@ -9,53 +9,44 @@ require_relative './helpers/web_helper.rb'
 class ApplicationController < Sinatra::Base
   include WebAppHelper
 
-
-  
-  # seems to be fix to issue: Warning! Rack::Session::Cookie data size exceeds 4K. Content dropped.
+  use Rack::Session::Pool # seems to be fix to issue: Warning! Rack::Session::Cookie data size exceeds 4K. Content dropped.
   #enable :sessions # replace this optiona bcas causing size issues enable :sessions
   register Sinatra::Flash
   
-  #enable :sessions
-  #use Rack::Session::Cookie, :secret => 'secret'#, :expire_after => 3600 * 24 # In seconds
 
   set :views, File.expand_path('../views', __FILE__)
   set :public_folder, File.expand_path('../public', __FILE__)
 
   configure do
     #enable :sessions
-    disable :sessions
-   # disable :flash
-    use Rack::Session::Pool
-   # use Rack::Flash
-    #use Rack::Flash
-    #set :session_secret, ENV['SESSION_SECRET'] ||= 'super secret'
+    set :session_secret, 'zmz!'
     set :api_ver, 'api/v2'
   end
 
 
-  configure :production, :development do
-    set :api_server, 'http://dynamozmz.herokuapp.com/' 
+  configure :production, :development, :test do
+    set :api_server, 'http://dynamozmz.herokuapp.com/' #'http://localhost:3000' 
     #'http://localhost:3000' # 'http://dynamozmz.herokuapp.com/'
   end
 
-  configure :test do
+  #configure :test do
    
     #use Rack::Session::Pool
-    set :domain, 'localhost'
-    set :api_server, 'http://dynamozmz.herokuapp.com/' 
-  end
+   # set :domain, 'localhost'
+   # set :api_server, 'http://dynamozmz.herokuapp.com/' 
+  #end
 
-  configure :development, :test do
-    set :api_server, 'http://dynamozmz.herokuapp.com'
+ # configure :development, :test do
+  #  set :api_server, 'http://dynamozmz.herokuapp.com'
     #set :api_server, 'http://localhost:3000' #'http://localhost:3000' # 'http://dynamozmz.herokuapp.com/'
-  end
+  #end
 
-  configure :production, :development do
-    set :api_server, 'http://dynamozmz.herokuapp.com'
-    enable :logging
-    set :domain, 'lptours.herokuapp.com'
+  #configure :production, :development do
+  #  set :api_server, 'http://dynamozmz.herokuapp.com'
+  #  enable :logging
+  #  set :domain, 'lptours.herokuapp.com'
     #use Rack::Session::Pool, :domain => 'lptours.herokuapp.com', :expire_after => 60 * 60 * 24 * 365
-  end
+  #end
 
   # GUI route definitions
   get_root = lambda do
@@ -101,6 +92,8 @@ class ApplicationController < Sinatra::Base
 
   # here pass in results used to generate visualization
   get_tours_visualization = lambda do
+
+    logger = Logger.new(STDOUT)
     logger.info("CHECK SESSION ACTION:")
     logger.info(session[:action])
 
