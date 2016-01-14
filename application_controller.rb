@@ -81,6 +81,7 @@ class ApplicationController < Sinatra::Base
 
     if tours[:status] == true
       session[:results] = tours[:result]
+      @@global_results = tours[:result]
 
       session[:action] = :create
       redirect "/tours/compare"
@@ -119,10 +120,14 @@ class ApplicationController < Sinatra::Base
     slim :tours
   end
 
+  @@global_results = {}
+
   post_report = lambda do
     #puts params
-    if session[:action] == :create
-      report = post_api_report(params[:email], session[:results], settings)
+    if !@@global_results.nil?
+      puts 'Values stored'
+      puts @@global_results.to_json
+      report = post_api_report(params[:email], @@global_results, settings)
 
       # Run worker
       if report[:status] == true
@@ -143,3 +148,4 @@ class ApplicationController < Sinatra::Base
   post "/report", &post_report
   get '/tours/compare', &get_tours_visualization
 end
+
